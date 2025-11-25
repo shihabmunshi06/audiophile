@@ -1,0 +1,35 @@
+:root {
+  --warm-brown: hsl(22, 65%, 57%);
+  --dark-gray: hsl(0, 0%, 6%);
+  --light-gray-1: hsl(0, 0%, 95%);
+  --light-gray-2: hsl(0, 0%, 98%);
+  --peach: hsl(21, 94%, 75%);
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --stroke: #cfcfcf;
+  --light-background: #f1f1f1;
+  --red: #CD2C2C;
+}
+
+$xl-padding: 11vw;
+$l-padding: 8vw;
+$m-padding: 6.5vw;
+$s-padding: 5.2vw;
+$xs-padding: 5.2vw;
+
+
+%flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%border {
+  border: 1px solid red;
+}
+
+@mixin flex($juco: flex-start, $alite: flex-start) {
+  display: flex;
+  justify-content: $juco;
+  align-items: $alite;
+}

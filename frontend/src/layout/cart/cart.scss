@@ -1,0 +1,118 @@
+@use "../../a-sass/abstract.scss" as *;
+
+.cart-background {
+    position: absolute;
+    right: 0;
+    left: 0;
+    // background-color: rgba($color: #000000, $alpha: .4);
+    padding: 2rem 17rem;
+    z-index: 10000;
+
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path .3s ease-out;
+
+    &.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .cart {
+        width: 38rem;
+        margin-left: auto;
+        background-color: var(--white);
+        padding: 3.2rem;
+        border-radius: .8rem;
+
+        >* {
+            width: 100%;
+        }
+
+        // padding: 2.4rem 3.2rem;
+        header {
+            @include flex($juco: space-between, $alite: center);
+            margin-bottom: 3.2rem;
+
+            button {
+                padding: 0 .4rem;
+                text-transform: capitalize;
+                border-bottom: 1px solid rgba($color: #000000, $alpha: .3);
+                color: rgba($color: #000000, $alpha: .5);
+            }
+        }
+
+        .cart-items {
+            @extend %flex;
+            flex-direction: column;
+            gap: 1.8rem;
+
+            li {
+                width: 100%;
+
+                .cart-item {
+                    @include flex($juco: space-between, $alite: center);
+
+                    .img-name-price {
+                        @extend %flex;
+                        gap: 1.6rem;
+
+                        .img-div {
+                            width: 6.4rem;
+                            aspect-ratio: 1;
+                            border-radius: .8rem;
+                        }
+
+                        .name-price {
+                            .name {
+                                text-transform: uppercase;
+                                margin-bottom: .8rem
+                            }
+                        }
+                    }
+
+                    .quantity {
+                        @extend %flex;
+                        background-color: #f1f1f1;
+                        margin-left: auto;
+
+                        button {
+                            @extend %flex;
+                            padding: .8rem 1.6rem
+                        }
+
+                        input {
+                            text-align: center;
+                            appearance: textfield;
+                            width: 2ch;
+                        }
+                    }
+                }
+            }
+        }
+
+        footer {
+            margin-top: 3.2rem;
+
+            .total-amount {
+                @include flex($juco: space-between);
+                margin-bottom: 2rem
+            }
+
+            button {
+                width: 100%;
+                height: 4.8rem;
+                background-color: var(--warm-brown);
+                color: var(--white);
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    // .products {
+    //     .product {
+    //         &:not(:first-child) {
+    //             margin-top: 2.4rem;
+    //         }
+    //     }
+    // }
+}

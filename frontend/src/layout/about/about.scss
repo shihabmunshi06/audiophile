@@ -1,0 +1,58 @@
+@use "../../a-sass/abstract.scss" as *;
+
+#about {
+    .wrapper {
+        @extend %flex;
+        gap: 8rem;
+
+        >* {
+            flex: 1;
+        }
+
+        .texts {
+            padding: 4rem 0;
+
+            h2 {
+                span {
+                    color: var(--warm-brown);
+                }
+            }
+
+            p {
+                color: rgba($color: #000000, $alpha: .6);
+                margin-top: 3.6rem;
+            }
+        }
+
+        .img-div {
+            align-self: stretch;
+            border-radius: inherit;
+        }
+    }
+
+}
+
+@media screen and (max-width: 950px) {
+    #about {
+        .wrapper {
+            flex-direction: column-reverse;
+            gap: 0;
+
+            >* {
+                flex: auto;
+            }
+
+            .texts {
+                padding-bottom: 0;
+                h2,
+                p {
+                    text-align: center;
+                }
+            }
+
+            .img-div {
+                height: 30rem;
+            }
+        }
+    }
+}

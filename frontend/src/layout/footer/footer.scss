@@ -1,0 +1,119 @@
+@use "../../a-sass/abstract.scss" as *;
+
+.main-footer {
+    padding: 6rem $xl-padding;
+
+    @media (max-width: 1100px) {
+        padding: 6rem $l-padding;
+    }
+
+    @media (max-width: 900px) {
+        padding: 4rem $m-padding;
+    }
+
+    @media (max-width: 770px) {
+        padding: 4rem $s-padding;
+    }
+
+    @media (max-width: 570px) {
+        padding: 4rem $xs-padding;
+    }
+
+    background-color: var(--black);
+    color: var(--white);
+
+    .logo-nav {
+        @include flex($juco: space-between);
+        flex-wrap: wrap;
+        gap: 3rem;
+
+        >* {
+            flex: none;
+        }
+
+        .logo {
+            svg {
+                path {
+                    fill: var(--white);
+                }
+
+                &:hover {
+                    path {
+                        fill: var(--warm-brown);
+                    }
+                }
+            }
+        }
+    }
+
+    p {
+        margin: 3rem 0 6rem;
+        opacity: 50%;
+        width: 50%;
+    }
+
+    @media screen and (max-width: 945px) {
+        p {
+            width: 90%;
+        }
+    }
+
+    .copyright-social {
+        @include flex($juco: space-between);
+        flex-wrap: wrap;
+        gap: 3rem;
+
+        .copyright {
+            opacity: 50%;
+        }
+
+        .social {
+            @extend %flex;
+            gap: 2rem;
+
+            svg {
+                path {
+                    fill: var(--white);
+                }
+
+                &:hover {
+                    path {
+                        fill: var(--warm-brown);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:500px) {
+    .main-footer {
+        .logo-nav {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            nav {
+                ul {
+                    gap: 2rem;
+                    flex-direction: column;
+                }
+            }
+        }
+
+        p {
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .copyright-social {
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .social {
+                gap: 3rem;
+            }
+        }
+    }
+}

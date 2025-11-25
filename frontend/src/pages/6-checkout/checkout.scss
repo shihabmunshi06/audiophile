@@ -1,0 +1,9 @@
+@use "../../a-sass/abstract.scss" as *;
+
+input {
+    border: 1px solid var(--stroke);
+
+    &:hover {
+        border: 1px solid var(--warm-brown);
+    }
+}

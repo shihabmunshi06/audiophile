@@ -1,0 +1,39 @@
+@use "../../a-sass/abstract.scss" as *;
+
+
+.products {
+    >*:not(:first-child) {
+        padding: 0 16rem;
+    }
+
+    .category-name {
+        padding: 10rem 0;
+        background-color: var(--black);
+        color: var(--white);
+
+        h1 {
+            margin-inline: auto;
+            text-align: center;
+        }
+    }
+
+    .headphones-wrapper {
+        margin-top: 16rem;
+
+        >*:not(:last-child) {
+            margin-bottom: 12rem
+        }
+
+        >*:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+    }
+
+    .categories {
+        margin: 16rem 0;
+    }
+
+    .about {
+        margin-bottom: 16rem;
+    }
+}

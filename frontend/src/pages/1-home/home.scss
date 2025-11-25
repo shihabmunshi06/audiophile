@@ -1,0 +1,265 @@
+@use "../../a-sass/abstract.scss" as *;
+
+.home {
+    .wrapper {
+        border-radius: .8rem;
+    }
+
+    #hero {
+        height: calc(100vh - 8rem);
+
+        background-image: url("/assets/home/desktop/image-hero.jpg");
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: cover;
+
+        .texts {
+            @include flex($juco: center, $alite: flex-start);
+            flex-direction: column;
+
+            height: 100%;
+            max-width: 40rem;
+            margin-left: 16rem;
+
+            color: var(--white);
+
+            .overline{
+                opacity: 50%;
+            }
+
+            .experience {
+                opacity: 75%;
+                margin-top: 3rem;
+            }
+        }
+
+    }
+
+    .zx9-speaker {
+        .wrapper {
+            @extend %flex;
+            gap: 8rem;
+            padding: 8vw 5.5vw 0;
+
+            background-color: var(--warm-brown);
+            color: var(--white);
+
+            background-image: url("/assets/home/desktop/pattern-circles.svg");
+            background-repeat: no-repeat;
+            background-position: left 4rem;
+            background-size: contain;
+
+            .img-div {
+                flex: 1.4;
+                height: 100%;
+            }
+
+            .texts {
+                flex: 1;
+
+                p {
+                    margin-top: 1.8rem;
+                    opacity: 75%;
+                }
+
+                a {
+                    background-color: var(--black);
+
+                    &:hover {
+                        background-color: #4C4C4C;
+                    }
+                }
+            }
+        }
+    }
+
+    .zx7-speaker {
+        .wrapper {
+            height: 32rem;
+            color: var(--black);
+
+            background-image: url("/assets/home/desktop/image-speaker-zx7.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: right;
+
+            @media(max-width: 1190px) {
+                background-image: url("/assets/home/tablet/image-speaker-zx7.jpg");
+            }
+
+            @media(max-width: 750px) {
+                background-image: url("/assets/home/mobile/image-speaker-zx7.jpg");
+            }
+
+
+            .texts {
+                position: absolute;
+                left: 8rem;
+                top: 50%;
+                transform: translateY(-60%);
+
+                a {
+                    margin-top: 3rem;
+                    border: 1px solid var(--black);
+                    background: none;
+                    color: var(--black);
+
+                    &:hover {
+                        background-color: var(--black);
+                        color: var(--white)
+                    }
+
+                }
+            }
+        }
+    }
+
+    .yx1-earphones {
+        .wrapper {
+            @extend %flex;
+            height: 36rem;
+            gap: 2.8rem;
+
+            >* {
+                flex: 1;
+                border-radius: inherit;
+            }
+
+            .img-div {
+                height: 100%;
+            }
+
+            .texts {
+                background-color: #f1f1f1;
+                height: 100%;
+                width: 100%;
+                padding-left: 8rem;
+                @include flex($juco: center);
+                flex-direction: column;
+
+                a {
+                    margin-top: 3rem;
+                    border: 1px solid var(--black);
+                    background: none;
+                    color: var(--black);
+
+                    &:hover {
+                        background-color: var(--black);
+                        color: var(--white)
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    .home {
+        #hero {
+            background-image: url("/assets/home/tablet/image-header.jpg");
+            background-position: center;
+
+            .texts {
+                max-width: none;
+                margin-left: 0;
+                align-items: center;
+
+                p {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 945px) {
+    .home {
+        #hero {
+            background-position: bottom;
+        }
+
+        .zx9-speaker {
+            .wrapper {
+                gap: 6rem;
+                padding: 8vw 5.5vw 2rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .home {
+        #hero {
+            height: 70rem;
+        }
+
+        .zx9-speaker {
+            .wrapper {
+                flex-direction: column;
+                gap: 6rem;
+                padding: 5rem 2rem;
+                background-position: center -16rem;
+                background-size: cover;
+
+
+                .img-div {
+                    flex: none;
+                    height: 24rem;
+                }
+
+                .texts {
+                    >* {
+                        text-align: center;
+                    }
+
+                    p {
+                        margin-top: 2.4rem;
+                    }
+
+                    a {
+                        margin-inline: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .home {
+        #hero {
+            background-image: url("/assets/home/mobile/image-header.jpg");
+        }
+
+        .yx1-earphones {
+            .wrapper {
+                flex-direction: column;
+                height: 44rem;
+                gap: 2.8rem;
+
+                >* {
+                    border-radius: inherit;
+                }
+
+                .img-div {
+                    width: 100%;
+                    height: 50%;
+                }
+
+                .texts {
+                    padding-left: 8rem;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .home {
+        #hero {
+            background-size: 100% 100%;
+        }
+    }
+}

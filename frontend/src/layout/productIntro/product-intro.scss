@@ -1,0 +1,21 @@
+@use "../../a-sass/abstract.scss" as *;
+
+.product-intro {
+    @extend %flex;
+    gap: 12rem;
+
+    >* {
+        flex: 1;
+    }
+
+    .texts {
+        .overline {
+            color: var(--warm-brown);
+        }
+
+        .description {
+            margin-top: 2rem;
+            opacity: 50%;
+        }
+    }
+}

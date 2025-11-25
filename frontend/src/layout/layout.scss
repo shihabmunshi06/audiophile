@@ -1,0 +1,27 @@
+@use "../a-sass/abstract.scss" as *;
+
+main {
+    >div>* {
+        margin-bottom: 10rem;
+
+        &:not(:first-child) {
+            padding: 0 $xl-padding;
+
+            @media (max-width: 1100px) {
+                padding: 0 $l-padding;
+            }
+
+            @media (max-width: 900px) {
+                padding: 0 $m-padding;
+            }
+
+            @media (max-width: 770px) {
+                padding: 0 $s-padding;
+            }
+
+            @media (max-width: 570px) {
+                padding: 0 $xs-padding;
+            }
+        }
+    }
+}
