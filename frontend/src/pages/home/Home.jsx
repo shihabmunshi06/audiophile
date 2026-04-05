@@ -9,7 +9,7 @@ export default function Home() {
       <section id="hero">
         <div className="texts">
           <p className="new">new product</p>
-          <h1 className>
+          <h1>
             XX99 Mark II
             <br />
             Headphones

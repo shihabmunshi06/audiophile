@@ -1,0 +1,39 @@
+.quantity-button {
+    @extend %center;
+    background-color: var(--light-background);
+    margin-left: auto;
+
+    button {
+        @extend %center;
+        padding: .6rem 1.2rem;
+        font-weight: 700;
+        color: var(--gray);
+        font-size: 1.8rem;
+
+        &:disabled {
+            opacity: .3;
+
+            &:hover {
+                color: var(--gray);
+            }
+        }
+
+        &:hover {
+            color: var(--warm-brown);
+        }
+    }
+
+    input {
+        margin: 0 .4rem;
+        text-align: center;
+        appearance: textfield;
+        width: 3ch;
+        font-weight: 700;
+    }
+
+    .error-div{
+        top: unset;
+        bottom: 100%;
+        margin-bottom: .4rem;
+    }
+}

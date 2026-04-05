@@ -122,7 +122,6 @@
                 height: 100%;
                 flex: 1;
                 @include column-gap($juco: center);
-                padding: 0 5.5vw;
                 background-color: var(--light-background);
 
                 h2 {
@@ -148,7 +147,6 @@
 
             .texts {
                 max-width: 100%;
-                padding: 0 8vw;
                 margin: 0;
                 align-items: center;
 

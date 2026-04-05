@@ -1,9 +1,86 @@
-@use "../../a-sass/abstract.scss" as *;
+#form {
+    padding: 5.4rem 0;
+    background-color: var(--light-gray-1);
 
-input {
-    border: 1px solid var(--stroke);
-
-    &:hover {
-        border: 1px solid var(--warm-brown);
+    >* {
+        margin: 0;
+        // padding: 0;
     }
+
+    .wrapper {
+        @include flex();
+        gap: 3rem;
+
+        >* {
+            background-color: var(--white);
+        }
+
+        .form-wrapper {
+            @include column-gap($gap: 3.2rem);
+            padding: 3.2rem;
+
+            >* {
+                width: 100%;
+            }
+
+            border-radius: .8rem;
+
+            h1 {
+                @extend %medium;
+            }
+
+            form {
+                flex: 1;
+
+                fieldset {
+                    &:not(:first-child) {
+                        margin-top: 5.2rem;
+                        margin-top: 2.8rem;
+                    }
+
+                    .address {
+                        grid-column: span 2;
+                    }
+                }
+            }
+
+            .notification {
+                @extend %center;
+                gap: 3.2rem;
+
+                svg {
+                    height: 4.8rem;
+                    width: 4.8rem;
+                    flex-basis: 4.8rem;
+                    flex-shrink: 0;
+                }
+
+                p {
+                    opacity: .5;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+
+
+        .cart-background {
+            position: static;
+            padding: 0;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            flex-basis: 24vw;
+            min-width: 36rem;
+            height: fit-content;
+            background: none;
+            z-index: unset;
+
+            .cart {
+                margin: 0;
+                width: 100%;
+                height: auto;
+                max-width: unset;
+            }
+        }
+    }
+
 }

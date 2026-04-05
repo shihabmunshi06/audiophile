@@ -37,12 +37,13 @@ nav#categories {
 }
 
 @media(max-width: 630px) {
-    #categories {
+    nav#categories {
         ul {
             flex-direction: column;
 
             li {
                 width: 100%;
+                flex: auto
             }
         }
     }

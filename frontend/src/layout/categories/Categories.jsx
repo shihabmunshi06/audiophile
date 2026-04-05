@@ -37,7 +37,7 @@ function Category({ image, category, closeNav }) {
 }
 
 import "./categories.scss"
-export default function Categories({ navState, closeNav }) {
+export default function Categories({ navState = true, closeNav = () => { } }) {
     return (
         <nav
             id='categories'

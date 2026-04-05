@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    cartState: false,
     cartItems: [
         {
             id: 1,
@@ -12,7 +11,7 @@ const initialState = {
                 desktop: "/assets/product-yx1-earphones/desktop/image-product.jpg"
             },
             price: 599,
-            productAmount: 1
+            quantity: 1
         },
         {
             id: 2,
@@ -23,7 +22,7 @@ const initialState = {
                 desktop: "/assets/product-yx1-earphones/desktop/image-product.jpg"
             },
             price: 599,
-            productAmount: 1
+            quantity: 1
         },
 
     ]
@@ -33,9 +32,6 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        toggleCart: (state) => {
-            state.cartState = !state.cartState
-        },
         changeCart: (state, action) => {
             state.cartItems = action.payload
         },
@@ -46,4 +42,4 @@ const cartSlice = createSlice({
 })
 
 export default cartSlice.reducer
-export const { toggleCart, changeCart, clearCart } = cartSlice.actions
+export const { changeCart, clearCart } = cartSlice.actions

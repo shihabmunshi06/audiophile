@@ -1,13 +1,61 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { changeCart, clearCart, toggleCart } from '../../app/features/cartSlice';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
-function Product({ id, slug, image, price, productAmount, handleCartChange }) {
+import QuantityButton from '../../components/quantityButton/quantityButton';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { changeCart, clearCart } from '../../app/features/cartSlice';
+
+function Product({ id, slug, image, price, quantity, handleCartChange, quantityButton }) {
 
     const productName = slug.split("-").slice(0, -1).join(" ")
     const { desktop } = image
-    const match = useMatch("/checkout")
-    console.log(match)
+    const max = 999
 
+    const [inputValue, setInputValue] = useState(quantity)
+    const [error, setError] = useState("")
+
+    const decrease = () => {
+        if (inputValue <= 1) return
+        setError("")
+        const newValue = inputValue - 1
+        setInputValue(newValue)
+        handleCartChange(id, newValue)
+    }
+
+    const increase = () => {
+        if (inputValue > max) return
+        setError("")
+        const newValue = inputValue + 1
+        setInputValue(newValue)
+        handleCartChange(id, newValue)
+    }
+
+    const handleInputChange = (e) => {
+        const value = Number(e.target.value)
+        setError("")
+        if (e.target.value === "") {
+            setInputValue("")
+            handleCartChange(id, 0)
+            return
+        }
+
+        if (value < 1) {
+            setError(`Minimum of 1`)
+            setInputValue(0)
+            handleCartChange(id, 0)
+            return
+        }
+
+        if (value >= max) {
+            setError(`Maximum of ${max}`)
+            setInputValue(999)
+            handleCartChange(id, max)
+            return
+        }
+        setInputValue(value)
+        handleCartChange(id, value)
+    }
 
     return (
         <div className="cart-item">
@@ -16,62 +64,66 @@ function Product({ id, slug, image, price, productAmount, handleCartChange }) {
                     <img src={desktop} alt="name" />
                 </div>
                 <div className="name-price">
-                    <div className="name">{productName}</div>
-                    <div className="price"> $ {parseInt(price) * parseInt(productAmount)}</div>
+                    <div className="name">
+                        {productName}
+                    </div>
+                    <div className="price">
+                        $ {parseInt(price) * parseInt(quantity)}
+                    </div>
                 </div>
             </div>
 
-            <div className="quantity">
-                <button
-                    type="button"
-                    aria-label="Decrease quantity of"
-                    onClick={() => handleCartChange(id, productAmount - 1)}
-                >
-                    -
-                </button>
-                <input
-                    type="number"
-                    value={productAmount}
-                    aria-label={`Quantity of`}
-                    onChange={(e) => handleCartChange(id, e.target.value)}
+            {quantityButton ? (
+                <QuantityButton
+                    name={slug}
+                    increase={increase}
+                    decrease={decrease}
+                    handleInputChange={handleInputChange}
+                    max={max}
+                    min={1}
+                    inputValue={inputValue}
+                    error={error}
                 />
-                <button
-                    onClick={() => handleCartChange(id, productAmount + 1)} aria-label="Increase quantity of"
-                    type="button"
-                >
-                    +
-                </button>
-            </div>
-            <h2></h2>
+            ) : (
+                <span>x{quantity}</span>
+            )}
         </div>
     )
 }
 
 import "./cart.scss"
-import { useMatch, useNavigate } from 'react-router';
-export default function Cart() {
+export default function Cart({ cartState, closeCart, quantityButton = true, handleCheckout }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const cartState = useSelector(state => state.cart.cartState)
     const cartItems = useSelector(state => state.cart.cartItems)
 
-    const totalAmount = cartItems.reduce((sum, item) => sum += item.price * item.productAmount, 0)
+    const totalAmount = cartItems.reduce((sum, item) => sum += item.price * item.quantity, 0)
+    const cartQuantity = cartItems.length
 
     const handleChange = (id, value) => {
         dispatch(changeCart(cartItems.map(e => {
             if (e.id === id) {
-                return ({ ...e, productAmount: parseInt(value) })
+                return ({ ...e, quantity: parseInt(value) })
             }
             return e
         })))
     }
 
-    const handleSubmit = (e) => {
+    const handleCartSubmit = (e) => {
         e.preventDefault()
-        dispatch(toggleCart())
-        navigate("/checkout")
+        if (quantityButton === true) {
+            e.preventDefault()
+            closeCart()
+            navigate("/checkout")
+        } else {
+            handleCheckout()
+        }
     }
+
+    const shippingCost = 50;
+    const vat = 1079;
+    const grandTotal = totalAmount + shippingCost + vat
     return (
         <div
             id='cart-background'
@@ -80,22 +132,71 @@ export default function Cart() {
             aria-modal='true'
             className={`cart-background ${cartState && "active"}`}>
             <div className="cart">
-                <header>
-                    <h2 className='tiny'>cart (2)</h2>
-                    <button onClick={() => dispatch(clearCart())}>remove all</button>
-                </header>
-                <form onSubmit={handleSubmit}>
-                    <ul className="cart-items">
-                        {cartItems.map(e => <li key={e.id}>
-                            <Product {...e} handleCartChange={handleChange} />
-                        </li>)}
-                    </ul>
+                <form onSubmit={handleCartSubmit}>
+                    <header>
+                        {quantityButton ? (
+                            <>
+                                <h2>
+                                    cart ({cartQuantity})
+                                </h2>
+
+                                <button
+                                    type="button"
+                                    onClick={() => dispatch(clearCart())}
+                                >
+                                    Remove all
+                                </button>
+                            </>
+                        ) : (
+                            <h2>
+                                summary
+                            </h2>
+                        )}
+                    </header>
+                    {cartItems.length > 0 ? (
+                        <ul className="cart-items">
+                            {cartItems.map(e => <li key={e.id}>
+                                <Product
+                                    {...e}
+                                    handleCartChange={handleChange}
+                                    quantityButton={quantityButton}
+                                />
+                            </li>)}
+                        </ul>
+                    ) : (
+                        <p>Nothing in cart</p>
+                    )}
+
                     <footer>
-                        <div className="total-amount">
-                            <p className="total">Total</p>
-                            <p className="amount tiny">$ {totalAmount}</p>
+                        <div className="summary-row">
+                            <p className="title">TOTAL</p>
+                            <p className="amount">$ {totalAmount}</p>
                         </div>
-                        <button type='submit' className="checkout default">Checkout</button>
+                        {!quantityButton && (
+                            <>
+                                <div className="summary-row">
+                                    <p className="title">SHIPPING</p>
+                                    <p className="amount">$ {shippingCost}</p>
+                                </div>
+                                <div className="summary-row">
+                                    <p className="title">VAT (INCLUDED)</p>
+                                    <p className="amount">$ {vat}</p>
+                                </div>
+                                <div className="summary-row grand-total">
+                                    <p className="title">GRAND TOTAL</p>
+                                    <p className="amount">$ {grandTotal}</p>
+                                </div>
+                            </>
+                        )}
+
+
+                        <button
+                            type='submit'
+                            className="primary"
+                            form={quantityButton ? undefined : "checkout"}
+                        >
+                            {quantityButton ? "Checkout" : "Continue"}
+                        </button>
                     </footer>
                 </form>
 

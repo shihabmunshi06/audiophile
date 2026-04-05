@@ -1,10 +1,8 @@
-@use "../../a-sass/abstract.scss" as *;
-
 .main-header {
     position: sticky;
     top: 0;
     z-index: 100;
-    @include flex($juco: space-between, $alite: center);
+    @extend %space-between;
     height: 8rem;
 
     padding: 0 $xl-padding;
@@ -53,7 +51,7 @@
         }
     }
 
-    #categories {
+    >#categories {
         background-color: rgba($color: #000000, $alpha: .4);
         color: var(--black);
         height: 100vh;
@@ -102,13 +100,39 @@
             display: none;
         }
 
-
-        #categories {
+        >#categories {
             display: block;
             position: absolute;
             top: 100%;
             left: 0;
             right: 0;
+
+            .wrapper {
+                max-height: 70rem;
+                overflow: hidden;
+                padding: 3.2rem;
+
+                ul {
+                    gap: 1.6rem;
+
+                    li {
+                        height: 20rem;
+                        max-height: 20rem;
+
+                        .img-div {
+                            height: 10rem;
+                        }
+
+                        h2 {
+                            margin-top: auto;
+                        }
+
+                        a {
+                            margin-top: .8rem;
+                        }
+                    }
+                }
+            }
         }
 
         .cart-button {

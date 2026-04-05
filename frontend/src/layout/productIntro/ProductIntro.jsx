@@ -47,7 +47,7 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
                             />
                             <button type="button" className="increase" aria-label="Increase quantity" onClick={() => setQuantity(q => Math.max(1, q + 1))}>+</button>
                         </div>
-                        <button onClick={() => console.log("clicked")} className="default">add to cart</button>
+                        <button onClick={() => console.log("")} className="default">add to cart</button>
                     </div>
                 }
 
