@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 import { useMatch } from "react-router";
 
+import QuantityButton from "../../components/quantityButton/quantityButton";
+import { changeQuantity } from "../../app/features/cartSlice";
+
 import "./product-intro.scss"
 export default function ProductIntro({ name, image, description, id, new: isNew, price }) {
+    const dispatch = useDispatch()
     const { mobile, tablet, desktop } = image;
 
     const nameParts = name.split(" ");
@@ -12,7 +16,9 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
 
     const match = useMatch("/product/:id");
 
-    // const [quantity, setQuantity] = useState(2)
+    const handleCartChange = (value) => {
+        dispatch(changeQuantity({ productId: id, quantity: value }))
+    }
 
     return (
         <article className="product-intro">
@@ -36,7 +42,13 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
 
                 <div className="button-wrapper">
                     {match && (
-                        ""
+                        <QuantityButton
+                            name={beforePart}
+                            max={999}
+                            min={1}
+                            handleCartChange={handleCartChange}
+                            quantity={1}
+                        />
                     )}
                     <Link className="primary" to={`/product/${id}`}>see product</Link>
                 </div>

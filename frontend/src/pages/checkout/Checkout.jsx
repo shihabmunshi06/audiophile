@@ -199,7 +199,7 @@ export default function Checkout() {
                 </div>
 
                 <Cart
-                    quantityButton={false}
+                    checkout={true}
                     handleCheckout={handleData}
                 />
             </div>

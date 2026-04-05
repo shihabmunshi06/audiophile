@@ -32,8 +32,12 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        changeCart: (state, action) => {
-            state.cartItems = action.payload
+        changeQuantity: (state, action) => {
+            const { productId, quantity } = action.payload
+            state.cartItems = state.cartItems.map(e => {
+                if (e.id === productId) return { ...e, quantity }
+                return e
+            })
         },
         clearCart: (state) => {
             state.cartItems = []
@@ -42,4 +46,4 @@ const cartSlice = createSlice({
 })
 
 export default cartSlice.reducer
-export const { changeCart, clearCart } = cartSlice.actions
+export const { changeQuantity, clearCart } = cartSlice.actions
