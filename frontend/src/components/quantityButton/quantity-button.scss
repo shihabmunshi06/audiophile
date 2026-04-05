@@ -3,6 +3,10 @@
     background-color: var(--light-background);
     margin-left: auto;
 
+    label {
+        display: none;
+    }
+
     button {
         @extend %center;
         padding: .6rem 1.2rem;
@@ -31,7 +35,7 @@
         font-weight: 700;
     }
 
-    .error-div{
+    .error-div {
         top: unset;
         bottom: 100%;
         margin-bottom: .4rem;

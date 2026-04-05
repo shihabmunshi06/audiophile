@@ -5,6 +5,8 @@ export default function QuantityButton(
 ) {
     return (
         <div className="quantity-button">
+            <label htmlFor="quantity">Quantity</label>
+
             <button
                 type="button"
                 aria-label={`Decrease quantity of ${name}`}

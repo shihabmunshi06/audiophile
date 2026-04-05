@@ -1,7 +1,5 @@
-@use "../../a-sass/abstract.scss" as *;
-
 .product-intro {
-    @extend %flex;
+    @extend %center;
     gap: 8.3vw;
 
     >* {
@@ -15,18 +13,32 @@
     }
 
     .texts {
-        .overline {
+        .new {
+            @include overline();
             color: var(--warm-brown);
+            margin-bottom: 1.6rem;
         }
 
-        .description {
-            margin-top: 2rem;
+
+        h2 {
+            @extend %large;
+            margin-bottom: 3.2rem;
+
+        }
+
+        .desc {
             opacity: 50%;
         }
 
         .price {
-            margin-top: 3rem;
+            margin-top: 4rem;
+            margin-bottom: .8rem;
             opacity: .8;
+            @include x-small;
+        }
+
+        a {
+            margin-top: 4rem;
         }
     }
 
@@ -67,7 +79,7 @@
             }
         }
 
-        .hidden {
+        label {
             display: none;
         }
     }
@@ -93,8 +105,9 @@
                 margin-inline: auto;
             }
         }
-         .button-wrapper{
+
+        .button-wrapper {
             justify-content: center;
-         }
+        }
     }
 }
