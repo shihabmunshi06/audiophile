@@ -24,11 +24,11 @@ export default function Products() {
   const sortedProducts = data.slice().sort((a, b) => (b.new === true) - (a.new === true));
 
   return (
-    <div className="products">
+    <div className="name-products-wrapper">
       <div className="category-name">
         <h1 className="l">{category}</h1>
       </div>
-      <div className="headphones-wrapper">
+      <div className="products">
         {sortedProducts.map(e => <ProductIntro {...e} key={e.id} />)}
       </div>
       <Categories />

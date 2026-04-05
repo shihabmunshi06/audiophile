@@ -1,39 +1,25 @@
 @use "../../a-sass/abstract.scss" as *;
 
 
-.products {
-    >*:not(:first-child) {
-        padding: 0 16rem;
-    }
-
+.name-products-wrapper {
     .category-name {
-        padding: 10rem 0;
+        padding-top: clamp(0rem, 13vw, 12rem);
+        padding-bottom: clamp(0rem, 13vw, 12rem);
         background-color: var(--black);
         color: var(--white);
 
         h1 {
-            margin-inline: auto;
             text-align: center;
         }
     }
 
-    .headphones-wrapper {
-        margin-top: 16rem;
-
+    .products {
         >*:not(:last-child) {
-            margin-bottom: 12rem
+            margin-bottom: 8rem
         }
 
         >*:nth-child(even) {
             flex-direction: row-reverse;
         }
-    }
-
-    .categories {
-        margin: 16rem 0;
-    }
-
-    .about {
-        margin-bottom: 16rem;
     }
 }

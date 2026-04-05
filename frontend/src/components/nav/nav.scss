@@ -1,25 +1,16 @@
-@use "../../a-sass/abstract.scss" as *;
-
-
 .main-nav {
     transition: clip-path .3s ease-in;
 
     ul {
-        @extend %flex;
+        @extend %center;
         gap: 3.4rem;
 
         li {
             a {
-                text-transform: uppercase;
-
                 &:hover {
                     color: var(--warm-brown);
                 }
             }
         }
-    }
-
-    button {
-        display: none;
     }
 }

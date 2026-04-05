@@ -20,9 +20,15 @@ function Category({ image, category, closeNav }) {
     return (
         <li>
             <div className="bg-design"></div>
-            <img src={image} alt={`${category} category`} />
-            <h2 className="tiny">{category}</h2>
-            <Link onClick={() => closeNav()} className="x-tiny" to={`/${category}`}>
+            <div className="img-div">
+                <img src={image} alt={`${category} category`} />
+            </div>
+            <h2>{category}</h2>
+            <Link
+                to={`/${category}`}
+                className="svg"
+                onClick={() => closeNav()}
+            >
                 <span>shop</span>
                 <RightIcon />
             </Link>
@@ -33,7 +39,10 @@ function Category({ image, category, closeNav }) {
 import "./categories.scss"
 export default function Categories({ navState, closeNav }) {
     return (
-        <nav id='categories' className={`${navState === true ? "active" : ""}`}>
+        <nav
+            id='categories'
+            className={`${navState === true ? "active" : ""}`}
+        >
             <div className="wrapper">
                 <ul>
                     {data.map(e => <Category key={e.category} {...e} closeNav={closeNav} />)}

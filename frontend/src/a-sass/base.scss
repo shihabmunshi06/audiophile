@@ -59,7 +59,6 @@ img {
   }
 }
 
-a,
 span,
 i {
   display: inline-block;
@@ -180,10 +179,10 @@ p.overline {
   margin-bottom: 2rem;
 }
 
-a.default {
+.default {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-color: var(--warm-brown);
   color: var(--white);
   text-transform: uppercase;

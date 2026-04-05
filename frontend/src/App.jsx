@@ -2,9 +2,10 @@ import { Routes, Route } from 'react-router'
 
 import Layout from './layout/Layout'
 
-import Home from './pages/1-home/Home'
-import Products from './pages/2-Products/Products'
-import ProductDetails from './pages/5-product-details/ProductDetails'
+import Home from './pages/home/Home'
+import Products from './pages/Products/Products'
+import ProductDetails from './pages/productDetails/ProductDetails'
+import Checkout from './pages/checkout/Checkout'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path='/' element={<Home />} />
         <Route path='/:category' element={<Products />} />
         <Route path='/product/:id' element={< ProductDetails />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Route>
     </Routes>
   )

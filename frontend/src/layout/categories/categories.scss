@@ -1,17 +1,15 @@
-@use "../../a-sass/abstract.scss" as *;
-
-#categories {
+nav#categories {
     ul {
-        @extend %flex;
+        @extend %center;
         gap: 3rem;
+        width: 100%;
 
         li {
+            flex: 1;
             height: 28.4rem;
             max-height: 28.4rem;
+            @include column-gap($alite: center);
             padding-bottom: 2.4rem;
-            @extend %flex;
-            flex-direction: column;
-            flex: 1;
 
             .bg-design {
                 background-color: var(--light-background);
@@ -22,26 +20,17 @@
                 bottom: 0;
             }
 
-            picture {
-                @extend %border;
+            .img-div {
                 height: 16rem;
-                width: 100%;
             }
 
             h2 {
-                text-transform: uppercase;
+                margin-top: 3.2rem;
+                @include x-small()
             }
 
             a {
-                color: rgba($color: #000000, $alpha: 0.5);
-                width: 100%;
-                @extend %flex;
-                gap: 1rem;
                 margin-top: 1.6rem;
-
-                span:hover {
-                    color: var(--warm-brown);
-                }
             }
         }
     }
@@ -53,8 +42,7 @@
             flex-direction: column;
 
             li {
-                height: 24rem;
-                max-height: 24rem;
+                width: 100%;
             }
         }
     }

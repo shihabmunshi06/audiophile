@@ -8,15 +8,15 @@ export default function Home() {
     <div className="home">
       <section id="hero">
         <div className="texts">
-          <p className='overline'>new product</p>
-          <h1 className='xl'>
+          <p className="new">new product</p>
+          <h1 className>
             XX99 Mark II
             <br />
             Headphones
           </h1>
-          <p className='experience'>Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
+          <p className="desc">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
           </p>
-          <Link className='default' to="/product/4">see product</Link>
+          <Link className="primary" to="/product/4">see product</Link>
         </div>
       </section>
       <Categories />
@@ -30,9 +30,9 @@ export default function Home() {
             </picture>
           </div>
           <div className="texts">
-            <h2 className='xl'>ZX9 <br /> SPEAKER</h2>
+            <h2>ZX9 <br /> SPEAKER</h2>
             <p>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
-            <Link className='default' to="/product/6"> see product</Link>
+            <Link className='black' to="/product/6"> see product</Link>
           </div>
         </div>
 
@@ -40,11 +40,10 @@ export default function Home() {
       <article className="zx7-speaker">
         <div className="wrapper">
           <div className="texts">
-            <h2 className='s'>ZX7 SPEAKER</h2>
-            <Link className='default' to="/product/5">see product</Link>
+            <h2>ZX7 SPEAKER</h2>
+            <Link className="outline" to="/product/5">see product</Link>
           </div>
         </div>
-
       </article>
       <article className="yx1-earphones">
         <div className="wrapper">
@@ -56,8 +55,8 @@ export default function Home() {
             </picture>
           </div>
           <div className="texts">
-            <h2 className='s'>YX1 EARPHONES</h2>
-            <Link className='default' to="/product/1">see product</Link>
+            <h2>YX1 EARPHONES</h2>
+            <Link className='outline' to="/product/1">see product</Link>
           </div>
         </div>
       </article>

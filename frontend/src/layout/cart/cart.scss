@@ -1,15 +1,31 @@
 @use "../../a-sass/abstract.scss" as *;
 
 .cart-background {
-    position: absolute;
-    right: 0;
-    left: 0;
-    // background-color: rgba($color: #000000, $alpha: .4);
-    padding: 2rem 17rem;
-    z-index: 10000;
+    position: fixed;
+    width: 100vw;
+    height: calc(100vh - 8rem);
+    background-color: rgba($color: #000000, $alpha: .4);
 
+    padding: 2rem $xl-padding;
+    z-index: 10000;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     transition: clip-path .3s ease-out;
+
+    @media (max-width: 1100px) {
+        padding: 2rem $l-padding;
+    }
+
+    @media (max-width: 900px) {
+        padding: 2rem $m-padding;
+    }
+
+    @media (max-width: 770px) {
+        padding: 2rem $s-padding;
+    }
+
+    @media (max-width: 570px) {
+        padding: 2rem $xs-padding;
+    }
 
     &.active {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -93,26 +109,18 @@
 
             .total-amount {
                 @include flex($juco: space-between);
-                margin-bottom: 2rem
+                margin-bottom: 2rem;
+
+                .total {
+                    text-transform: uppercase;
+                    opacity: .5;
+                }
             }
 
             button {
+                margin-top: 2.4rem;
                 width: 100%;
-                height: 4.8rem;
-                background-color: var(--warm-brown);
-                color: var(--white);
-                font-weight: bold;
-                text-transform: uppercase;
-                font-size: 1.3rem;
             }
         }
     }
-
-    // .products {
-    //     .product {
-    //         &:not(:first-child) {
-    //             margin-top: 2.4rem;
-    //         }
-    //     }
-    // }
 }

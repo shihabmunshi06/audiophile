@@ -1,12 +1,12 @@
-@use "../../a-sass/abstract.scss" as *;
-
 .home {
     .wrapper {
+        @include flex($alite: center);
         border-radius: .8rem;
     }
 
     #hero {
         height: calc(100vh - 8rem);
+        // height: 70rem;
 
         background-image: url("/assets/home/desktop/image-hero.jpg");
         background-repeat: no-repeat;
@@ -14,22 +14,23 @@
         background-size: cover;
 
         .texts {
-            @include flex($juco: center, $alite: flex-start);
-            flex-direction: column;
-
+            @include column-gap($juco: center, $gap: 2rem);
             height: 100%;
             max-width: 40rem;
             margin-left: 16rem;
-
             color: var(--white);
 
-            .overline{
+            .new {
+                @include overline();
                 opacity: 50%;
             }
 
-            .experience {
-                opacity: 75%;
-                margin-top: 3rem;
+            h1 {
+                @extend %x-large;
+            }
+
+            .desc {
+                opacity: 75%
             }
         }
 
@@ -37,7 +38,6 @@
 
     .zx9-speaker {
         .wrapper {
-            @extend %flex;
             gap: 8rem;
             padding: 8vw 5.5vw 0;
 
@@ -57,17 +57,17 @@
             .texts {
                 flex: 1;
 
+                h2 {
+                    @extend %x-large;
+                }
+
                 p {
                     margin-top: 1.8rem;
                     opacity: 75%;
                 }
 
                 a {
-                    background-color: var(--black);
-
-                    &:hover {
-                        background-color: #4C4C4C;
-                    }
+                    margin-top: 2.4rem;
                 }
             }
         }
@@ -76,6 +76,7 @@
     .zx7-speaker {
         .wrapper {
             height: 32rem;
+            padding: 0 5.5vw;
             color: var(--black);
 
             background-image: url("/assets/home/desktop/image-speaker-zx7.jpg");
@@ -93,22 +94,12 @@
 
 
             .texts {
-                position: absolute;
-                left: 8rem;
-                top: 50%;
-                transform: translateY(-60%);
+                h2 {
+                    @extend %normal;
+                }
 
                 a {
-                    margin-top: 3rem;
-                    border: 1px solid var(--black);
-                    background: none;
-                    color: var(--black);
-
-                    &:hover {
-                        background-color: var(--black);
-                        color: var(--white)
-                    }
-
+                    margin-top: 2.8rem;
                 }
             }
         }
@@ -116,12 +107,10 @@
 
     .yx1-earphones {
         .wrapper {
-            @extend %flex;
-            height: 36rem;
             gap: 2.8rem;
+            height: 36rem;
 
             >* {
-                flex: 1;
                 border-radius: inherit;
             }
 
@@ -130,23 +119,18 @@
             }
 
             .texts {
-                background-color: #f1f1f1;
                 height: 100%;
-                width: 100%;
-                padding-left: 8rem;
-                @include flex($juco: center);
-                flex-direction: column;
+                flex: 1;
+                @include column-gap($juco: center);
+                padding: 0 5.5vw;
+                background-color: var(--light-background);
+
+                h2 {
+                    @extend %normal;
+                }
 
                 a {
-                    margin-top: 3rem;
-                    border: 1px solid var(--black);
-                    background: none;
-                    color: var(--black);
-
-                    &:hover {
-                        background-color: var(--black);
-                        color: var(--white)
-                    }
+                    margin-top: 2.8rem;
                 }
             }
         }
@@ -157,15 +141,18 @@
 @media screen and (max-width: 1400px) {
     .home {
         #hero {
+            height: 70rem;
+
             background-image: url("/assets/home/tablet/image-header.jpg");
             background-position: center;
 
             .texts {
-                max-width: none;
-                margin-left: 0;
+                max-width: 100%;
+                padding: 0 8vw;
+                margin: 0;
                 align-items: center;
 
-                p {
+                >* {
                     text-align: center;
                 }
             }
@@ -173,7 +160,7 @@
     }
 }
 
-@media screen and (max-width: 945px) {
+@media screen and (max-width: 950px) {
     .home {
         #hero {
             background-position: bottom;
@@ -190,14 +177,9 @@
 
 @media screen and (max-width: 768px) {
     .home {
-        #hero {
-            height: 70rem;
-        }
-
         .zx9-speaker {
             .wrapper {
                 flex-direction: column;
-                gap: 6rem;
                 padding: 5rem 2rem;
                 background-position: center -16rem;
                 background-size: cover;
@@ -209,17 +191,25 @@
                 }
 
                 .texts {
+                    @include column-gap($alite: center);
+
                     >* {
                         text-align: center;
                     }
+                }
+            }
+        }
 
-                    p {
-                        margin-top: 2.4rem;
-                    }
+        .zx7-speaker {
+            .wrapper {
+                padding: 5rem 2rem;
+            }
+        }
 
-                    a {
-                        margin-inline: auto;
-                    }
+        .yx1-earphones {
+            .wrapper {
+                .texts {
+                    padding: 5rem 2rem;
                 }
             }
         }
@@ -236,7 +226,6 @@
             .wrapper {
                 flex-direction: column;
                 height: 44rem;
-                gap: 2.8rem;
 
                 >* {
                     border-radius: inherit;
@@ -248,13 +237,12 @@
                 }
 
                 .texts {
-                    padding-left: 8rem;
+                    width: 100%;
                 }
             }
         }
     }
 }
-
 
 @media screen and (max-width: 450px) {
     .home {
