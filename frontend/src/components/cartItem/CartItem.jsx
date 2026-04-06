@@ -35,6 +35,7 @@ export default function CartItem({ id, slug, image, price, quantity, checkout })
 
             {checkout === false ? (
                 <QuantityButton
+                    key={quantity}
                     name={slug}
                     max={max}
                     min={1}

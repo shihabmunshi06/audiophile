@@ -3,7 +3,6 @@ import { useState } from "react"
 import "./quantity-button.scss"
 
 export default function QuantityButton({ name, max, min = 1, handleCartChange, quantity }) {
-
     const [inputValue, setInputValue] = useState(quantity)
 
     const [error, setError] = useState("")
@@ -28,6 +27,7 @@ export default function QuantityButton({ name, max, min = 1, handleCartChange, q
         const value = Number(e.target.value)
         setError("")
         if (e.target.value === "") {
+            setError(`Blank value`)
             setInputValue("")
             handleCartChange(0)
             return
@@ -35,14 +35,14 @@ export default function QuantityButton({ name, max, min = 1, handleCartChange, q
 
         if (value < min) {
             setError(`Minimum of ${min}`)
-            setInputValue(0)
-            handleCartChange(0)
+            setInputValue(min)
+            handleCartChange(min)
             return
         }
 
         if (value > max) {
             setError(`Maximum of ${max}`)
-            setInputValue(999)
+            setInputValue(max)
             handleCartChange(max)
             return
         }

@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 import { useMatch } from "react-router";
 
@@ -6,6 +6,7 @@ import QuantityButton from "../../components/quantityButton/quantityButton";
 import { changeQuantity } from "../../app/features/cartSlice";
 
 import "./product-intro.scss"
+import { useState } from "react";
 export default function ProductIntro({ name, image, description, id, new: isNew, price }) {
     const dispatch = useDispatch()
     const { mobile, tablet, desktop } = image;
@@ -16,8 +17,17 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
 
     const match = useMatch("/product/:id");
 
+    const cartItems = useSelector(state => state.cart.cartItems)
+    const item = cartItems.find(e => e.id === id)
+
+    const [localQuantity, setLocalQuantity] = useState(item?.quantity || 1)
+
     const handleCartChange = (value) => {
-        dispatch(changeQuantity({ productId: id, quantity: value }))
+        setLocalQuantity(value)
+    }
+
+    const handleCartAdd = () => {
+        dispatch(changeQuantity({ productId: id, quantity: localQuantity }))
     }
 
     return (
@@ -43,14 +53,25 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
                 <div className="button-wrapper">
                     {match && (
                         <QuantityButton
+                            key={item?.quantity}
                             name={beforePart}
                             max={999}
                             min={1}
                             handleCartChange={handleCartChange}
-                            quantity={1}
+                            quantity={item?.quantity || 1}
                         />
                     )}
-                    <Link className="primary" to={`/product/${id}`}>see product</Link>
+                    {match ? (
+                        <button
+                            className="primary"
+                            onClick={handleCartAdd}
+                        >
+                            add to cart
+                        </button>
+                    ) : (
+                        <Link className="primary" to={`/product/${id}`}>see product</Link>
+                    )}
+
                 </div>
             </div>
         </article>

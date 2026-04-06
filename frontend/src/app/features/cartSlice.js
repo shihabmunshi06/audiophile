@@ -11,7 +11,7 @@ const initialState = {
                 desktop: "/assets/product-yx1-earphones/desktop/image-product.jpg"
             },
             price: 599,
-            quantity: 1
+            quantity: 4
         },
         {
             id: 2,

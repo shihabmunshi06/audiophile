@@ -21,18 +21,26 @@ export default function ProductDetails() {
 
     const { features, includes, gallery, others } = data
     const { first, second, third } = gallery
+    console.log(others)
     return (
         <div className="product-details">
             <ProductIntro {...data} />
             <div className="feature-box">
                 <section className="feature">
-                    <h2 className="m">features</h2>
+                    <h2>features</h2>
                     <p>{features}</p>
                 </section>
                 <aside className="box">
-                    <h2 className="m">in the box</h2>
+                    <h2>in the box</h2>
                     <ul>
-                        {includes.map((e, i) => <li key={i}> <span className="quantity"><strong>{e.quantity}x</strong></span> <span className="item">{e.item}</span> </li>)}
+                        {includes.map((e, i) => {
+                            return (
+                                <li key={i}>
+                                    <span className="quantity"><strong>{e.quantity}x</strong></span>
+                                    <span className="item">{e.item}</span>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </aside>
             </div>
@@ -60,11 +68,11 @@ export default function ProductDetails() {
                 </figure>
             </section>
             <section className="suggestion">
-                <h2 className="m">you may also like</h2>
+                <h2 >you may also like</h2>
                 <ul>
                     {others.map((e) => {
                         return (
-                            <li key={e.id}>
+                            <li key={e.name}>
                                 <article>
                                     <picture>
                                         <source srcSet={e.image.mobile} media="(max-width: 450px)" />
@@ -72,7 +80,7 @@ export default function ProductDetails() {
                                         <img src={e.image.desktop} alt="" />
                                     </picture>
                                     <h3>{e.name}</h3>
-                                    <Link className="default" to="/">see product</Link>
+                                    <Link className="primary" to="/">see product</Link>
                                 </article>
                             </li>
 
