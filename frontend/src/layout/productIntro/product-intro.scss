@@ -1,6 +1,6 @@
 .product-intro {
     @extend %center;
-    gap: 8.3vw;
+    gap: 8.33vw;
 
     >* {
         flex: 1;
@@ -19,11 +19,9 @@
             margin-bottom: 1.6rem;
         }
 
-
         h2 {
             @extend %large;
-            margin-bottom: 3.2rem;
-
+            margin-bottom: 2rem;
         }
 
         .desc {
@@ -38,7 +36,7 @@
         }
 
         a {
-            margin-top: 4rem;
+            margin-top: 3.2rem;
         }
     }
 
@@ -62,25 +60,19 @@
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 950px) {
     .product-intro {
         flex-direction: column !important;
 
         figure {
             width: 100%;
-
             img {
                 height: 35rem;
             }
         }
 
         .texts {
-            padding: 0 2.5vw;
             text-align: center;
-
-            a {
-                margin-inline: auto;
-            }
         }
 
         .button-wrapper {
@@ -88,3 +80,5 @@
         }
     }
 }
+
+@media screen and (max-width: 450px) {}

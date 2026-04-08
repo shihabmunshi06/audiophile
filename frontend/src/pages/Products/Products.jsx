@@ -9,27 +9,26 @@ import { useGetProductsByCategoryQuery } from "../../app/features/productsApiSli
 import "./products.scss"
 export default function Products() {
   const { category } = useParams()
-  const { data, isLoading, isError, error } = useGetProductsByCategoryQuery(category)
 
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-  if (isError) {
-    return <p>Error: {error?.data?.error || "Failed to fetch products"}</p>;
-  }
+  const { data: products = [], isLoading, isError, error } = useGetProductsByCategoryQuery(category)
 
-  if (!data || data.length === 0) {
-    return <p>No products found in {category} category</p>;
+  const renderProducts = () => {
+    if (isLoading) return <p>Loading...</p>
+    if (isError) return <p>Error: {error?.data?.error || "Failed to fetch products"}</p>;
+    if (products.length === 0) return <p>No products found in {category} category</p>;
+
+    const sortedProducts = products.slice().sort((a, b) => (b.new === true) - (a.new === true));
+
+    return sortedProducts.map(e => <ProductIntro {...e} key={e._id} />)
   }
-  const sortedProducts = data.slice().sort((a, b) => (b.new === true) - (a.new === true));
 
   return (
     <div className="name-products-wrapper">
       <div className="category-name">
-        <h1 className="l">{category}</h1>
+        <h1>{category}</h1>
       </div>
       <div className="products">
-        {sortedProducts.map(e => <ProductIntro {...e} key={e._id} />)}
+        {renderProducts()}
       </div>
       <Categories />
       <About />

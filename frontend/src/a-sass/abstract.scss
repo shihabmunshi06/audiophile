@@ -13,28 +13,7 @@
   --red: #CD2C2C;
   --stroke: #cfcfcf;
   --gray: hsla(0, 0%, 0%, 0.5);
-
-  --space-1: 1.2rem;
-  --space-2: 1.6rem;
-  --space-3: 2rem;
-  --space-4: 2.4rem;
-  --space-5: 2.8rem;
-  --space-6: 3.2rem;
 }
-
-@media screen and (max-width: 890px) {
-  :root {
-    --space-6: clamp(1.6rem, 4vw, 3.2rem);
-  }
-}
-
-
-
-$xl-padding: 11vw;
-$l-padding: 8vw;
-$m-padding: 6.5vw;
-$s-padding: 5.2vw;
-$xs-padding: 4.2vw;
 
 %border {
   border: 1px solid red;
@@ -46,12 +25,6 @@ $xs-padding: 4.2vw;
 
 %border-3 {
   border: 1px solid brown;
-}
-
-%flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 %center {
@@ -82,7 +55,7 @@ $xs-padding: 4.2vw;
 }
 
 %x-large {
-  font-size: 5.6rem;
+  font-size: clamp(3.6rem, 9.6vw, 5.6rem);
   line-height: 1.03;
   letter-spacing: 2px;
   font-weight: 700;
@@ -91,7 +64,7 @@ $xs-padding: 4.2vw;
 }
 
 %large {
-  font-size: 4rem;
+  font-size: clamp(2.8rem, 7.4vw, 4rem);
   letter-spacing: 1.5px;
   line-height: 1.1;
   font-weight: 700;
@@ -138,14 +111,6 @@ $xs-padding: 4.2vw;
   text-transform: uppercase;
 }
 
-@mixin subtitle {
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  line-height: 1.92;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 p {
   font-weight: 500;
   line-height: 1.6;
@@ -162,21 +127,20 @@ button,
 a {
   @extend %center;
   gap: 1.2rem;
+  width: fit-content !important;
   user-select: none;
   font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  gap: 1.2rem;
-  width: fit-content !important;
 
   &:disabled {
     cursor: default;
   }
 
   &.primary {
-    padding: 1.6rem 3rem;
+    padding: 1.6rem 3.2rem;
     background-color: var(--warm-brown);
     color: var(--white);
 
@@ -186,7 +150,7 @@ a {
   }
 
   &.outline {
-    padding: 1.6rem 3rem;
+    padding: 1.6rem 3.2rem;
     border: 1px solid var(--black);
     background: none;
     color: var(--black);
@@ -198,7 +162,7 @@ a {
   }
 
   &.black {
-    padding: 1.6rem 3rem;
+    padding: 1.6rem 3.2rem;
     background-color: var(--black);
     color: var(--white);
 
@@ -330,11 +294,19 @@ fieldset {
   text-align: right;
 }
 
+span.error {
+  color: var(--red);
+  font-size: 1.4rem;
+  letter-spacing: -.16px;
+  font-weight: 500;
+}
+
 .form-error-div {
-  span.error{
+  span.error {
     @include x-small();
     text-transform: none;
-    &::after{
+
+    &::after {
       content: "";
       position: absolute;
       left: 0;
@@ -344,11 +316,4 @@ fieldset {
       background-color: var(--red);
     }
   }
-}
-
-span.error {
-  color: var(--red);
-  font-size: 1.4rem;
-  letter-spacing: -.16px;
-  font-weight: 500;
 }

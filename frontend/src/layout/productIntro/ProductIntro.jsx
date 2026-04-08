@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router";
 import { useMatch } from "react-router";
@@ -6,8 +8,6 @@ import QuantityButton from "../../components/quantityButton/quantityButton";
 import { addToCart } from "../../app/features/cartSlice";
 
 import "./product-intro.scss"
-import { useState } from "react";
-import { useEffect } from "react";
 export default function ProductIntro(product) {
 
     const { name, image, description, _id, newProduct, price } = product
@@ -42,11 +42,7 @@ export default function ProductIntro(product) {
     return (
         <article className="product-intro">
             <figure>
-                <picture>
-                    <source srcSet={mobile} media="(max-width: 450px)" />
-                    <source srcSet={tablet} media="(max-width: 800px)" />
-                    <img src={desktop} alt="Promo" />
-                </picture>
+                <img src={desktop} alt="Promo" />
             </figure>
             <div className="texts">
                 {newProduct && <p className="new">new product</p>}

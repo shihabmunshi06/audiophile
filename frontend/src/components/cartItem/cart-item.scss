@@ -28,7 +28,7 @@
     }
 
     .button-wrapper {
-        @extend %flex;
+        @extend %center;
         align-items: stretch;
         gap: 1.2rem;
 

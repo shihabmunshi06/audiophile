@@ -1,7 +1,7 @@
 nav#categories {
     ul {
         @extend %center;
-        gap: 3rem;
+        gap: 3.2rem;
         width: 100%;
 
         li {
@@ -9,7 +9,7 @@ nav#categories {
             height: 28.4rem;
             max-height: 28.4rem;
             @include column-gap($alite: center);
-            padding-bottom: 2.4rem;
+            padding-bottom: 3.2rem;
 
             .bg-design {
                 background-color: var(--light-background);
@@ -25,18 +25,18 @@ nav#categories {
             }
 
             h2 {
-                margin-top: 3.2rem;
+                margin-top: auto;
                 @include x-small()
             }
 
             a {
-                margin-top: 1.6rem;
+                margin-top: 1.2rem;
             }
         }
     }
 }
 
-@media(max-width: 630px) {
+@media(max-width: 690px) {
     nav#categories {
         ul {
             flex-direction: column;

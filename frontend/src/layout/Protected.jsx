@@ -1,11 +1,11 @@
 import { Outlet } from "react-router"
 
-import Top from "./top/Top"
+import Header from "./top/Header"
 
 export default function Protected() {
     return (
         <>
-            <Top />
+            <Header />
             <main>
                 <Outlet />
             </main>

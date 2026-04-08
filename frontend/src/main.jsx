@@ -8,6 +8,7 @@ import App from './App.jsx'
 import store from './app/store.js'
 
 import "./a-sass/base.scss"
+import "./main.scss"
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

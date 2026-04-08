@@ -10,6 +10,9 @@ import "./product-deatils.scss"
 export default function ProductDetails() {
     const { productId } = useParams()
     const { data, isLoading, isError, error } = useGetProductQuery(productId)
+
+    console.log(data)
+
     if (isLoading) {
         return <p>Loading</p>
     }

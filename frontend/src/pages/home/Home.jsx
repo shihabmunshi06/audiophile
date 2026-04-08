@@ -1,21 +1,24 @@
+import { Link } from 'react-router'
+
 import Categories from '../../layout/categories/Categories'
 import About from '../../layout/about/About'
-import { Link } from 'react-router'
 
 import "./home.scss"
 export default function Home() {
   return (
     <div className="home">
       <section id="hero">
-        <div className="texts">
-          <p className="new">new product</p>
-          <h1>
-            XX99 Mark II
-            <br />
-            Headphones
-          </h1>
-          <p className="desc">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
-          </p>
+        <div className="texts-button">
+          <div className="texts">
+            <p className="new">new product</p>
+            <h1>
+              XX99 Mark II
+              <br />
+              Headphones
+            </h1>
+            <p className="desc">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
+            </p>
+          </div>
           <Link className="primary" to="/product/4">see product</Link>
         </div>
       </section>

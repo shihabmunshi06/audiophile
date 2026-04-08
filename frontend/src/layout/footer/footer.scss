@@ -1,25 +1,8 @@
-@use "../../a-sass/abstract.scss" as *;
-
 .main-footer {
-    padding: 6rem $xl-padding;
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
     background-color: var(--black);
     color: var(--white);
-
-    @media (max-width: 1100px) {
-        padding: 6rem $l-padding;
-    }
-
-    @media (max-width: 900px) {
-        padding: 4rem $m-padding;
-    }
-
-    @media (max-width: 770px) {
-        padding: 4rem $s-padding;
-    }
-
-    @media (max-width: 570px) {
-        padding: 4rem $xs-padding;
-    }
 
     .logo-nav {
         @include flex($juco: space-between);
@@ -67,7 +50,7 @@
         }
 
         .social {
-            @extend %flex;
+            @extend %center;
             gap: 2rem;
 
             svg {

@@ -11,8 +11,8 @@ import Cart from '../cart/Cart'
 import Profile from '../profile/Profile'
 import Categories from '../categories/Categories'
 
-import "./top.scss"
-export default function Top() {
+import "./header.scss"
+export default function Header() {
 
     const [cartState, toggleCartState] = useState(false)
     const [profileState, toggleProfileState] = useState(false)
@@ -71,6 +71,5 @@ export default function Top() {
             <Cart cartState={cartState} closeCart={closeCart} />
             <Profile profileState={profileState} closeProfile={closeProfile} />
         </>
-
     )
 }

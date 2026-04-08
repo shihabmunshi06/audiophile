@@ -1,22 +1,39 @@
 .name-products-wrapper {
     .category-name {
-        padding-top: clamp(0rem, 13vw, 12rem);
-        padding-bottom: clamp(0rem, 13vw, 12rem);
+        height: clamp(10rem, 16vw, 24rem);
+        @extend %center;
+        margin: 0 -11vw;
+        padding: 0 11vw;
         background-color: var(--black);
         color: var(--white);
 
+        @media (max-width: 1200px) {
+            margin: 0 -8vw;
+            padding: 0 8vw;
+        }
+
+        @media (max-width: 800px) {
+            margin: 0 -5.2vw;
+            padding: 0 5.2vw;
+        }
+
         h1 {
-            text-align: center;
+            @extend %large;
         }
     }
 
     .products {
-        >*:not(:last-child) {
+        padding-top: 8rem;
+        .product-intro {
             margin-bottom: 8rem
         }
 
-        >*:nth-child(even) {
+        .product-intro:nth-child(even) {
             flex-direction: row-reverse;
+        }
+
+        .product-intro {
+            // @extend %border;
         }
     }
 }
