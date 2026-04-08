@@ -1,13 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useMatch } from "react-router";
 
 import QuantityButton from "../../components/quantityButton/quantityButton";
-import { changeQuantity } from "../../app/features/cartSlice";
+import { addToCart } from "../../app/features/cartSlice";
 
 import "./product-intro.scss"
 import { useState } from "react";
-export default function ProductIntro({ name, image, description, id, new: isNew, price }) {
+import { useEffect } from "react";
+export default function ProductIntro(product) {
+
+    const { name, image, description, _id, newProduct, price } = product
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
+
     const dispatch = useDispatch()
     const { mobile, tablet, desktop } = image;
 
@@ -15,10 +24,10 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
     const afterPart = nameParts.pop();
     const beforePart = nameParts.join(" ");
 
-    const match = useMatch("/product/:id");
+    const match = useMatch("/products/:id");
 
     const cartItems = useSelector(state => state.cart.cartItems)
-    const item = cartItems.find(e => e.id === id)
+    const item = cartItems.find(e => e._id === _id)
 
     const [localQuantity, setLocalQuantity] = useState(item?.quantity || 1)
 
@@ -27,7 +36,7 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
     }
 
     const handleCartAdd = () => {
-        dispatch(changeQuantity({ productId: id, quantity: localQuantity }))
+        dispatch(addToCart({ product, quantity: localQuantity }))
     }
 
     return (
@@ -40,7 +49,7 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
                 </picture>
             </figure>
             <div className="texts">
-                {isNew && <p className="new">new product</p>}
+                {newProduct && <p className="new">new product</p>}
 
                 <h2>{beforePart} <br /> {afterPart}</h2>
 
@@ -69,7 +78,7 @@ export default function ProductIntro({ name, image, description, id, new: isNew,
                             add to cart
                         </button>
                     ) : (
-                        <Link className="primary" to={`/product/${id}`}>see product</Link>
+                        <Link className="primary" to={`/products/${_id}`}>see product</Link>
                     )}
 
                 </div>

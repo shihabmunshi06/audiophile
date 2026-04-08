@@ -1,0 +1,15 @@
+.profile {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    position: fixed;
+    right: 11vw;
+    margin-top: 2rem;
+    background-color: var(--white);
+    z-index: 10000;
+    border-radius: .8rem;
+    padding:  1.6rem;
+    transition: clip-path 0.3s ease-out;
+
+    &.true {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}

@@ -2,6 +2,8 @@
 
 .main-footer {
     padding: 6rem $xl-padding;
+    background-color: var(--black);
+    color: var(--white);
 
     @media (max-width: 1100px) {
         padding: 6rem $l-padding;
@@ -18,9 +20,6 @@
     @media (max-width: 570px) {
         padding: 4rem $xs-padding;
     }
-
-    background-color: var(--black);
-    color: var(--white);
 
     .logo-nav {
         @include flex($juco: space-between);

@@ -1,31 +1,99 @@
-import { useSelector } from "react-redux"
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 
 import CashOnDeliveryIcon from "../../components/icon/CashOnDeliveryIcon"
 import Cart from "../../layout/cart/Cart"
+import Confirmation from "../../layout/confirmation/Confirmation"
+
+import { useDispatch, useSelector } from "react-redux"
+import useCartCalculations from "../../hooks/useCartCalculations"
+import { useAddOrderMutation } from "../../app/features/ordersApiSlice"
+
+import { clearCart } from "../../app/features/cartSlice"
 
 import "./checkout.scss"
 export default function Checkout() {
 
-    const cartItems = useSelector(state => state.cart.cartItems)
+    const dispatch = useDispatch()
+    const { cartItems } = useSelector(state => state.cart)
+    const { totalAmount, shippingCost, vatAmount, grandTotal, } = useCartCalculations()
 
     const {
         register,
         formState: { errors },
-        handleSubmit
+        setError,
+        handleSubmit,
+        control,
+        watch,
+        reset
     } = useForm()
 
-    const handleData = (formData) => {
-        console.log(formData)
-        console.log(cartItems)
+    const paymentMethod = watch("paymentMethod")
+    const [addOrder, { data: successfulOrder = {}, isSuccess }] = useAddOrderMutation()
+
+    const handleData = async (formData) => {
+        try {
+            const orderItems = cartItems.map(item => ({
+                product: item._id,
+                name: item.name,
+                image: item.image.desktop,
+                price: item.price,
+                quantity: item.quantity
+            }))
+
+            const orderData = {
+                user: "69d59aa78150b5b54607d22f",
+                orderItems,
+                shippingAddress: {
+                    fullName: formData.name,
+                    street: formData.address,
+                    city: formData.city,
+                    state: formData.state,
+                    zipCode: formData.zip,
+                    country: formData.country,
+                    email: formData.email,
+                    phone: formData.phone,
+                    zip: formData.zip
+                },
+                paymentMethod: formData.paymentMethod,
+                shippingCost,
+                itemsPrice: totalAmount,
+                vat: vatAmount,
+                totalPrice: grandTotal,
+            }
+            console.log(orderData)
+            await addOrder(orderData).unwrap()
+            dispatch(clearCart())
+        } catch (error) {
+            setError("root.serverError", {
+                message: error.data.message || "Something went wrong"
+            })
+        }
+    }
+
+    const testData = {
+        name: "Shihab Munshi",
+        email: "sihaabbb@gmail.com",
+        phone: "01793614134",
+        address: "1530, al aqsa jame asjid road",
+        zip: "1204",
+        city: "Dhaka",
+        state: "Dhaka",
+        country: "Bangladesh",
+        paymentMethod: "cash-on-delivery"
     }
 
     return (
         <div id="form">
             <div className="wrapper">
                 <div className="form-wrapper">
-                    <h1>Checkout</h1>
-
+                    <h1>Checkout  <span onClick={() => reset(testData)}>autofill</span></h1>
+                    {errors.root?.serverError && (
+                        <div className="form-error-div">
+                            <span id="form-error" role="alert" className="error">
+                                {errors.root.serverError.message}
+                            </span>
+                        </div>
+                    )}
                     <form id="checkout" onSubmit={handleSubmit(handleData)}>
                         <fieldset>
                             <legend>Billing Details</legend>
@@ -190,9 +258,104 @@ export default function Checkout() {
                                 </div>
                             </div>
                         </fieldset>
+
+                        <fieldset className={`payment-details ${paymentMethod === "e-money" && "e-money"}`}>
+                            <legend>payment details</legend>
+                            <div className="inputs-wrapper">
+                                <Controller
+                                    name="paymentMethod"
+                                    control={control}
+                                    rules={{ required: "Payment Method is required" }}
+                                    render={({ field: { onChange, value } }) => (
+
+                                        <div className="label-input payment">
+                                            <label htmlFor="paymentMethod">Payment Method</label>
+                                            <div className="radio-group" id="paymentMethod">
+                                                <div className="radio-label">
+                                                    <input
+                                                        id="e-money"
+                                                        type="radio"
+                                                        value="e-money"
+                                                        checked={value === "e-money"}
+                                                        onChange={onChange}
+                                                        aria-required="true"
+                                                        aria-invalid={!!errors.paymentMethod}
+                                                        aria-describedby={errors.paymentMethod ? "payment-method-error" : undefined}
+                                                    />
+                                                    <label htmlFor="e-money">
+                                                        e-Money
+                                                    </label>
+                                                </div>
+                                                <div className="radio-label">
+                                                    <input
+                                                        id="cash-on-delivery"
+                                                        type="radio"
+                                                        value="cash-on-delivery"
+                                                        checked={value === "cash-on-delivery"}
+                                                        onChange={onChange}
+                                                        aria-required="true"
+                                                        aria-invalid={!!errors.paymentMethod}
+                                                        aria-describedby={errors.paymentMethod ? "payment-method-error" : undefined}
+                                                    />
+                                                    <label htmlFor="cash-on-delivery">
+                                                        Cash on Delivery
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                />
+                                <div className="label-input e-money-info">
+                                    <label htmlFor="eMoneyNumber">e-Money Number</label>
+                                    <input
+                                        id="eMoneyNumber"
+                                        type="text"
+                                        placeholder="238521993"
+                                        inputMode="numeric"
+                                        aria-required="true"
+                                        aria-invalid={!!errors.eMoneyNumber}
+                                        aria-describedby={errors.eMoneyNumber ? "eMoneyNumber-error" : undefined}
+                                        {...register("eMoneyNumber",
+                                            { required: paymentMethod === "e-money" ? "e-Money number is required" : false }
+                                        )}
+                                    />
+                                    {errors.eMoneyNumber && (
+                                        <div className="error-div">
+                                            <span id="eMoneyNumber-error" role="alert" className="error">
+                                                {errors.eMoneyNumber.message}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="label-input e-money-info">
+                                    <label htmlFor="eMoneyPin">e-Money PIN</label>
+                                    <input
+                                        id="eMoneyPin"
+                                        type="text"
+                                        placeholder="6891"
+                                        inputMode="numeric"
+                                        aria-required="true"
+                                        aria-invalid={!!errors.eMoneyPin}
+                                        aria-describedby={errors.eMoneyPin ? "eMoneyPin-error" : undefined}
+                                        {...register("eMoneyPin",
+                                            { required: paymentMethod === "e-money" ? "e-Money PIN is required" : false }
+                                        )}
+                                    />
+                                    {errors.eMoneyPin && (
+                                        <div className="error-div">
+                                            <span id="eMoneyPin-error" role="alert" className="error">
+                                                {errors.eMoneyPin.message}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+
+                            </div>
+                        </fieldset>
                     </form>
 
-                    <div className="notification">
+                    <div className={`notification ${paymentMethod === "cash-on-delivery" && "show"}`}>
                         <CashOnDeliveryIcon />
                         <p>The 'Cash on Delivery' option enables you to pay in cash when our delivery courier arrives at your residence. Just make sure your address is correct so that your order will not be cancelled.</p>
                     </div>
@@ -203,7 +366,10 @@ export default function Checkout() {
                     handleCheckout={handleData}
                 />
             </div>
-
+            <Confirmation
+                successfulOrder={successfulOrder}
+                confirmationState={isSuccess}
+            />
         </div>
     )
 }

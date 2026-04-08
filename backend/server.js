@@ -1,34 +1,35 @@
 import express from "express"
 import cors from "cors"
+import dotenv from "dotenv"
+dotenv.config()
 
-import data from "./data.js"
+import productRouter from "./src/product/product.router.js"
+import orderRouter from "./src/order/order.router.js"
+
+import connectDB from "./db/db.js"
+import seeder from "./db/seeder.js"
+
+import errorHandler from "./middleware/errorMiddleware.js"
+
 const app = express()
-const port = 3000;
-
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
-app.get("/", (req, res) => {
-    res.json(data)
-})
+app.use("/products", productRouter)
+app.use("/orders", orderRouter)
 
-app.get('/:category', (req, res) => {
-    const category = req.params.category.toLowerCase();
-    const filteredProducts = data.filter(p => p.category.toLowerCase() === category);
+app.use(errorHandler)
 
-    if (filteredProducts.length > 0) {
-        return res.status(200).json(filteredProducts);
+const PORT = process.env.port || 3000;
+
+const startServer = async () => {
+    try {
+        await connectDB()
+        // await seeder()
+        app.listen(PORT, () => console.log(`server running on ${PORT}`))
+    } catch (error) {
+        console.log(error)
     }
-    res.status(404).json({ error: "No products in this category" });
-});
+}
 
-app.get("/product/:id", (req, res) => {
-    const id = parseInt(req.params.id)
-    const product = data.find(p => p.id === id);
-    if (product) {
-        return res.status(200).json(product)
-    }
-    res.status(404).json({ error: "No matching product found" });
-})
-
-app.listen(port, () => console.log("server connected"))
+startServer()

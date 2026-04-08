@@ -1,0 +1,15 @@
+.not-found {
+    .wrapper {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        margin: 0;
+
+        span {
+            @extend %large;
+            text-transform: none;
+            width: 100%;
+            text-align: center;
+            color: var(--red);
+        }
+    }
+}

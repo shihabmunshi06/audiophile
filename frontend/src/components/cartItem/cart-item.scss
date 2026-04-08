@@ -1,5 +1,6 @@
 .cart-item {
     @extend %space-between;
+    gap: 1.2rem;
 
     .img-name-price {
         @extend %center;
@@ -8,7 +9,7 @@
         .img-div {
             width: 6.4rem;
             aspect-ratio: 1;
-            border-radius: .8rem;
+            border-radius: .4rem;
         }
 
         .name-price {
@@ -24,6 +25,31 @@
                 font-size: 1.5rem
             }
         }
+    }
+
+    .button-wrapper {
+        @extend %flex;
+        align-items: stretch;
+        gap: 1.2rem;
+
+        .svg-bg {
+            background-color: var(--light-gray-1);
+            cursor: pointer;
+
+            .cross-icon {
+                height: 100%;
+                fill: var(--gray);
+            }
+
+            &:hover {
+                background-color: var(--red);
+
+                .cross-icon {
+                    fill: var(--white);
+                }
+            }
+        }
+
     }
 
     span {

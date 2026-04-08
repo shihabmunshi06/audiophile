@@ -4,7 +4,7 @@ import About from "../../layout/about/About";
 
 import { useParams } from "react-router";
 
-import { useGetProductsByCategoryQuery } from "../../app/features/apiSlice";
+import { useGetProductsByCategoryQuery } from "../../app/features/productsApiSlice";
 
 import "./products.scss"
 export default function Products() {
@@ -29,7 +29,7 @@ export default function Products() {
         <h1 className="l">{category}</h1>
       </div>
       <div className="products">
-        {sortedProducts.map(e => <ProductIntro {...e} key={e.id} />)}
+        {sortedProducts.map(e => <ProductIntro {...e} key={e._id} />)}
       </div>
       <Categories />
       <About />

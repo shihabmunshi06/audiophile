@@ -2,10 +2,12 @@ import { useDispatch } from "react-redux"
 
 import QuantityButton from "../quantityButton/quantityButton"
 
-import { changeQuantity } from "../../app/features/cartSlice"
+import CrossIcon from "../icon/CrossIcon"
+
+import { changeQuantity, deleteCartItem } from "../../app/features/cartSlice"
 
 import "./cart-item.scss"
-export default function CartItem({ id, slug, image, price, quantity, checkout }) {
+export default function CartItem({ _id, slug, image, price, quantity, checkout }) {
 
     const dispatch = useDispatch()
 
@@ -14,7 +16,11 @@ export default function CartItem({ id, slug, image, price, quantity, checkout })
     const max = 999
 
     const handleCartChange = (value) => {
-        dispatch(changeQuantity({ productId: id, quantity: value }))
+        dispatch(changeQuantity({ productId: _id, quantity: value }))
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteCartItem(_id))
     }
 
     return (
@@ -34,14 +40,19 @@ export default function CartItem({ id, slug, image, price, quantity, checkout })
             </div>
 
             {checkout === false ? (
-                <QuantityButton
-                    key={quantity}
-                    name={slug}
-                    max={max}
-                    min={1}
-                    handleCartChange={handleCartChange}
-                    quantity={quantity}
-                />
+                <div className="button-wrapper">
+                    <QuantityButton
+                        key={quantity}
+                        name={slug}
+                        max={max}
+                        min={1}
+                        handleCartChange={handleCartChange}
+                        quantity={quantity}
+                    />
+                    <button onClick={handleDelete} type="button" className="svg-bg">
+                        <CrossIcon />
+                    </button>
+                </div>
             ) : (
                 <span>x{quantity}</span>
             )}

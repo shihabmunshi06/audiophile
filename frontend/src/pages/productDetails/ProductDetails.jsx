@@ -1,19 +1,20 @@
-import ProductIntro from "../../layout/productIntro/ProductIntro"
+import { Link, useParams } from "react-router"
 
-import { useGetProductQuery } from "../../app/features/apiSlice"
+import ProductIntro from "../../layout/productIntro/ProductIntro"
 import Categories from "../../layout/categories/Categories"
 import About from "../../layout/about/About"
 
+import { useGetProductQuery } from "../../app/features/productsApiSlice"
+
 import "./product-deatils.scss"
-import { Link, useParams } from "react-router"
 export default function ProductDetails() {
-    const { id } = useParams()
-    const { data, isLoading, isError, error } = useGetProductQuery(id)
+    const { productId } = useParams()
+    const { data, isLoading, isError, error } = useGetProductQuery(productId)
     if (isLoading) {
         return <p>Loading</p>
     }
     if (isError) {
-        return <p>{error}</p>
+        return <p>{error?.data?.message}</p>
     }
     if (!data) {
         return <p>No data found...</p>
@@ -21,10 +22,10 @@ export default function ProductDetails() {
 
     const { features, includes, gallery, others } = data
     const { first, second, third } = gallery
-    console.log(others)
+
     return (
         <div className="product-details">
-            <ProductIntro {...data} />
+            <ProductIntro key={data._id} {...data} />
             <div className="feature-box">
                 <section className="feature">
                     <h2>features</h2>
@@ -70,22 +71,19 @@ export default function ProductDetails() {
             <section className="suggestion">
                 <h2 >you may also like</h2>
                 <ul>
-                    {others.map((e) => {
-                        return (
-                            <li key={e.name}>
-                                <article>
-                                    <picture>
-                                        <source srcSet={e.image.mobile} media="(max-width: 450px)" />
-                                        <source srcSet={e.image.tablet} media="(max-width: 800px)" />
-                                        <img src={e.image.desktop} alt="" />
-                                    </picture>
-                                    <h3>{e.name}</h3>
-                                    <Link className="primary" to="/">see product</Link>
-                                </article>
-                            </li>
-
-                        )
-                    })}
+                    {others.map(e => (
+                        <li key={e._id}>
+                            <article>
+                                <picture>
+                                    <source srcSet={e.image.mobile} media="(max-width: 450px)" />
+                                    <source srcSet={e.image.tablet} media="(max-width: 800px)" />
+                                    <img src={e.image.desktop} alt="" />
+                                </picture>
+                                <h3>{e.name}</h3>
+                                <Link to={`/products/${e._id}`} className="primary">see product</Link>
+                            </article>
+                        </li>
+                    ))}
                 </ul>
             </section>
             <Categories />

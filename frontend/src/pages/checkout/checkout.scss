@@ -4,7 +4,6 @@
 
     >* {
         margin: 0;
-        // padding: 0;
     }
 
     .wrapper {
@@ -18,12 +17,12 @@
         .form-wrapper {
             @include column-gap($gap: 3.2rem);
             padding: 3.2rem;
+            border-radius: .8rem;
 
             >* {
                 width: 100%;
             }
 
-            border-radius: .8rem;
 
             h1 {
                 @extend %medium;
@@ -34,12 +33,34 @@
 
                 fieldset {
                     &:not(:first-child) {
-                        margin-top: 5.2rem;
-                        margin-top: 2.8rem;
+                        margin-top: 4rem;
                     }
 
-                    .address {
+                    .address,
+                    .payment {
                         grid-column: span 2;
+                    }
+
+                    .radio-group {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 1.6rem;
+                    }
+
+                    &.payment-details {
+                        .e-money-info {
+                            max-height: 0;
+                            overflow: hidden;
+                            transition: max-height .5s ease-out;
+                        }
+
+                        &.e-money {
+                            .e-money-info {
+                                transition: max-height .5s ease-in;
+                                max-height: 40rem;
+                                overflow: unset;
+                            }
+                        }
                     }
                 }
             }
@@ -47,6 +68,10 @@
             .notification {
                 @extend %center;
                 gap: 3.2rem;
+
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .5s ease-out;
 
                 svg {
                     height: 4.8rem;
@@ -58,6 +83,11 @@
                 p {
                     opacity: .5;
                     font-size: 1.5rem;
+                }
+
+                &.show {
+                    transition: max-height .5s ease-in;
+                    max-height: 40rem;
                 }
             }
         }

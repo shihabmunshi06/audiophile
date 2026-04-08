@@ -5,15 +5,16 @@ import CartItem from '../../components/cartItem/CartItem';
 
 import { clearCart } from '../../app/features/cartSlice';
 
+import useCartCalculations from '../../hooks/useCartCalculations';
+
 import "./cart.scss"
 export default function Cart({ cartState, closeCart, checkout = false, handleCheckout }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const cartItems = useSelector(state => state.cart.cartItems)
+    const { totalAmount, shippingCost, vat, vatAmount, grandTotal, cartQuantity } = useCartCalculations()
 
-    const totalAmount = cartItems.reduce((sum, item) => sum += item.price * item.quantity, 0)
-    const cartQuantity = cartItems.length
+    const cartItems = useSelector(state => state.cart.cartItems)
 
     const handleCartSubmit = (e) => {
         e.preventDefault()
@@ -26,10 +27,6 @@ export default function Cart({ cartState, closeCart, checkout = false, handleChe
         }
     }
 
-    const shippingCost = 50;
-    const vat = 1079;
-    const grandTotal = totalAmount + shippingCost + vat
-    
     return (
         <div
             id='cart-background'
@@ -61,7 +58,7 @@ export default function Cart({ cartState, closeCart, checkout = false, handleChe
                     </header>
                     {cartItems.length > 0 ? (
                         <ul className="cart-items">
-                            {cartItems.map(e => <li key={e.id}>
+                            {cartItems.map(e => <li key={e._id}>
                                 <CartItem {...e} checkout={checkout} />
                             </li>)}
                         </ul>
@@ -81,8 +78,8 @@ export default function Cart({ cartState, closeCart, checkout = false, handleChe
                                     <p className="amount">$ {shippingCost}</p>
                                 </div>
                                 <div className="summary-row">
-                                    <p className="title">VAT (INCLUDED)</p>
-                                    <p className="amount">$ {vat}</p>
+                                    <p className="title">VAT ({vat}%)</p>
+                                    <p className="amount">$ {vatAmount}</p>
                                 </div>
                                 <div className="summary-row grand-total">
                                     <p className="title">GRAND TOTAL</p>
