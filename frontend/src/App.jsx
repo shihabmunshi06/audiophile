@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router'
 
-import NotFound from './pages/notFound/notFound'
+import NotFound from './pages/notFound/NotFound'
 import Layout from './layout/Layout'
 import Protected from './layout/Protected'
 
