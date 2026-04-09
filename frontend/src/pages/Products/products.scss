@@ -1,6 +1,6 @@
 .name-products-wrapper {
     .category-name {
-        height: clamp(10rem, 16vw, 24rem);
+        height: clamp(10rem, 16vw, 22rem);
         @extend %center;
         margin: 0 -11vw;
         padding: 0 11vw;
@@ -23,17 +23,13 @@
     }
 
     .products {
-        padding-top: 8rem;
+        padding-top: max(4rem, 5.5vw);
         .product-intro {
-            margin-bottom: 8rem
+            margin-bottom: 8.33vw
         }
 
         .product-intro:nth-child(even) {
             flex-direction: row-reverse;
-        }
-
-        .product-intro {
-            // @extend %border;
         }
     }
 }

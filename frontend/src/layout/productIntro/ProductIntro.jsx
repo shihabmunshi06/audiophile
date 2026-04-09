@@ -11,6 +11,7 @@ import "./product-intro.scss"
 export default function ProductIntro(product) {
 
     const { name, image, description, _id, newProduct, price } = product
+    const { desktop } = image;
     const { pathname } = useLocation()
 
     useEffect(() => {
@@ -18,7 +19,6 @@ export default function ProductIntro(product) {
     }, [pathname])
 
     const dispatch = useDispatch()
-    const { mobile, tablet, desktop } = image;
 
     const nameParts = name.split(" ");
     const afterPart = nameParts.pop();
@@ -44,13 +44,15 @@ export default function ProductIntro(product) {
             <figure>
                 <img src={desktop} alt="Promo" />
             </figure>
-            <div className="texts">
-                {newProduct && <p className="new">new product</p>}
+            <div className="texts-button-wrapper">
+                <div className="texts">
+                    {newProduct && <p className="new">new product</p>}
 
-                <h2>{beforePart} <br /> {afterPart}</h2>
+                    <h2>{beforePart} <br /> {afterPart}</h2>
 
-                <p className="desc">{description}</p>
-
+                    <p className="desc">{description}</p>
+                </div>
+                
                 {match && (
                     <p className="price">$ {price.toLocaleString()}</p>
                 )}

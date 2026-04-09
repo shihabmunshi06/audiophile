@@ -8,8 +8,10 @@
 
         .img-div {
             width: 6.4rem;
+            min-width: 4rem;
             aspect-ratio: 1;
             border-radius: .4rem;
+            align-self: stretch;
         }
 
         .name-price {
@@ -32,7 +34,7 @@
         align-items: stretch;
         gap: 1.2rem;
 
-        .svg-bg {
+        .remove-button {
             background-color: var(--light-gray-1);
             cursor: pointer;
 
@@ -56,5 +58,17 @@
         font-size: 1.5rem;
         font-weight: 700;
         color: var(--gray);
+    }
+}
+
+@media (max-width: 450px) {
+    .cart-item {
+        .button-wrapper {
+            .quantity-button{
+                // flex-direction: column;
+            }
+            // flex-direction: column;
+            // align-items: flex-end;
+        }
     }
 }

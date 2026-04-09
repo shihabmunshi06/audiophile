@@ -3,7 +3,7 @@
     top: 0;
     height: 8rem;
     @extend %space-between;
-    
+
     border-bottom: 1px solid rgba(#ffffff, 0.2);
     background-color: var(--black);
     color: var(--white);
@@ -120,19 +120,16 @@
             }
         }
 
-        .cart-button {
+        .buttons {
             margin-left: auto;
         }
     }
 }
 
-@media (max-width: 400px) {
-    .main-header {
-        justify-content: space-between;
-
-        .logo,
-        .cart-button {
-            margin-left: 0;
+@media (max-width: 800px) {
+    .main-header{
+        .logo{
+            margin-left: 2.4rem;
         }
     }
 }

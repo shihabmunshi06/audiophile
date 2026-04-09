@@ -9,14 +9,15 @@
     z-index: 2;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     transition: clip-path .3s ease;
+    padding: 0 max(2.4rem, 5.2vw);
 
     &.active {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 
     .confirmation {
-        width: 54rem;
-        padding: 4.8rem;
+        max-width: 72rem;
+        padding: 4.8rem 3.2rem;
         border-radius: .8rem;
         background-color: var(--white);
         margin-top: 8rem;
@@ -33,7 +34,7 @@
         }
 
 
-        .product-total {
+        .products-total {
             @include flex($alite: stretch);
             margin: 3.2rem 0 4rem;
 
@@ -41,12 +42,18 @@
                 padding: 2.4rem;
             }
 
-            .product-text-wrapper {
-                background-color: var(--light-background);
+            .products-button-wrapper {
+                padding-left: 1rem;
                 border-top-left-radius: .8rem;
                 border-bottom-left-radius: .8rem;
+                background-color: var(--light-background);
+
+                .ordered-products {
+                    @include column-gap($gap: 1.2rem)
+                }
 
                 .product {
+                    width: 100%;
                     border-bottom: 1px solid var(--light-gray-3);
                     padding-bottom: 1.2rem;
                     @include flex();
@@ -54,14 +61,15 @@
                     color: var(--gray);
 
                     img {
-                        height: 5rem;
                         width: 5rem;
+                        object-fit: cover;
                     }
 
                     .name-cost {
+                        width: 100%;
+
                         .name-quantity {
-                            @extend %center;
-                            gap: 4rem;
+                            @include flex($juco: space-between);
 
                             .name {
                                 color: var(--black);
@@ -69,6 +77,7 @@
                             }
 
                             .quantity {
+                                margin-left: 2rem;
                                 font-weight: 600;
                                 font-size: 1.5rem;
                             }
@@ -78,14 +87,12 @@
                             font-weight: 700;
                             margin-top: .4rem;
                         }
-
                     }
-
                 }
 
                 .order-button {
                     width: 100% !important;
-                    margin-top: 1.2rem;
+                    margin-top: 2.4rem;
                     opacity: .5;
                     text-align: center;
                     font-weight: 700;
@@ -98,18 +105,15 @@
                         color: var(--warm-brown);
                     }
                 }
-
-
             }
 
             .total {
-                flex: 1;
+                // flex: 1;
                 background-color: var(--black);
                 color: var(--white);
                 border-top-right-radius: .8rem;
                 border-bottom-right-radius: .8rem;
-                @include column-gap($juco: center);
-                gap: 1.2rem;
+                @include column-gap($juco: flex-end, $gap: 1.2rem);
 
                 h2 {
                     font-size: 1.6rem;
@@ -128,6 +132,34 @@
 
         >a {
             width: 100% !important;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .modal-bg {
+        .confirmation {
+            padding: 3.2rem 2rem;
+
+            .top-part {
+                h1 {
+                    @include small();
+                }
+            }
+
+            .products-total {
+                flex-direction: column;
+
+                .products-button-wrapper {
+                    border-top-right-radius: .8rem;
+                    border-bottom-left-radius: 0;
+                }
+
+                .total {
+                    border-bottom-left-radius: .8rem;
+                    border-top-right-radius: 0;
+                }
+            }
         }
     }
 }

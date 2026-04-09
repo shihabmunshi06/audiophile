@@ -1,14 +1,22 @@
 #form {
-    padding: 5.4rem 0;
     background-color: var(--light-gray-1);
 
-    >* {
-        margin: 0;
+    margin: 0 -11vw;
+    padding: clamp(4rem, 5.5vw, 6.4rem) 11vw;
+
+    @media (max-width: 1200px) {
+        margin: 0 -8vw;
+        padding: clamp(4rem, 5.5vw, 6.4rem) 8vw;
+    }
+
+    @media (max-width: 800px) {
+        margin: 0 -5.2vw;
+        padding: clamp(4rem, 5.5vw, 6.4rem) 5.2vw;
     }
 
     .wrapper {
         @include flex();
-        gap: 3rem;
+        gap: 3.2rem;
 
         >* {
             background-color: var(--white);
@@ -16,7 +24,7 @@
 
         .form-wrapper {
             @include column-gap($gap: 3.2rem);
-            padding: 3.2rem;
+            padding: 3.2rem 3.2rem 0;
             border-radius: .8rem;
 
             >* {
@@ -48,6 +56,10 @@
                     }
 
                     &.payment-details {
+                        .inputs-wrapper {
+                            row-gap: 0;
+                        }
+
                         .e-money-info {
                             max-height: 0;
                             overflow: hidden;
@@ -55,6 +67,10 @@
                         }
 
                         &.e-money {
+                            .inputs-wrapper {
+                                row-gap: 1.6rem;
+                            }
+
                             .e-money-info {
                                 transition: max-height .5s ease-in;
                                 max-height: 40rem;
@@ -88,18 +104,17 @@
                 &.show {
                     transition: max-height .5s ease-in;
                     max-height: 40rem;
+                    padding-bottom: 3.2rem;
                 }
             }
         }
-
-
 
         .cart-background {
             position: static;
             padding: 0;
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            flex-basis: 24vw;
-            min-width: 36rem;
+            width: 34rem;
+            flex-shrink: 0;
             height: fit-content;
             background: none;
             z-index: unset;
@@ -112,5 +127,42 @@
             }
         }
     }
+}
 
+@media (max-width: 950px) {
+    #form {
+        .wrapper {
+            flex-direction: column;
+
+            .cart-background {
+                width: 100%;
+            }
+        }
+
+    }
+}
+
+@media (max-width: 450px) {
+    #form {
+        .wrapper {
+            flex-direction: column;
+
+            .form-wrapper {
+                padding: 2rem 2rem 0;
+
+                form {
+                    fieldset {
+                        &:not(:first-child) {
+                            margin-top: 4rem;
+                        }
+
+                        .radio-group {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 }

@@ -203,6 +203,16 @@ fieldset {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.6rem;
+
+    @media (max-width: 450px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+
+      >* {
+        grid-column: span 1 !important;
+      }
+    }
   }
 
   .label-input {

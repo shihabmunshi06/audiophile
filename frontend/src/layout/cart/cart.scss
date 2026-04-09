@@ -12,6 +12,7 @@
     }
 
     .cart {
+        margin-top: 3.2rem;
         max-width: 44rem;
         margin-left: auto;
         padding: 3.2rem;
@@ -97,6 +98,16 @@
                     width: 100% !important;
                 }
             }
+        }
+    }
+}
+
+
+@media (max-width: 450px) {
+    .cart-background {
+        .cart {
+            margin-top: 2rem;
+            padding: 2rem;
         }
     }
 }

@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router"
 import OrderConfirmationIcon from "../../components/icon/OrderConfirmationIcon"
 
@@ -17,6 +18,8 @@ export default function Confirmation({ confirmationState, successfulOrder }) {
 
     const otherItemsCount = orderItems.length - 1 || 0
 
+    const [otherItemsState, setOtherItemsState] = useState(false)
+
     return (
         <div className={`modal-bg ${confirmationState === true ? "active" : ""}`}>
             <div className="confirmation">
@@ -28,19 +31,49 @@ export default function Confirmation({ confirmationState, successfulOrder }) {
                     <p>You will receive an email confirmation shortly.</p>
                 </div>
 
-                <div className="product-total">
-                    <div className="product-text-wrapper">
-                        <div className="product">
-                            <img src={image} alt={name} />
-                            <div className="name-cost">
-                                <div className="name-quantity">
-                                    <h2 className="name">{name}</h2>
-                                    <div className="quantity">x{quantity}</div>
+                <div className="products-total">
+                    <div className="products-button-wrapper">
+                        <div className="ordered-products">
+                            <div className="product">
+                                <img src={image} alt={name} />
+                                <div className="name-cost">
+                                    <div className="name-quantity">
+                                        <h2 className="name">{name}</h2>
+                                        <div className="quantity">x{quantity}</div>
+                                    </div>
+                                    <span className="cost">$ {price * quantity}</span>
                                 </div>
-                                <span className="cost">$ {price * quantity}</span>
                             </div>
+                            {otherItemsState && (
+                                orderItems.slice(1).map(e => {
+                                    return (
+                                        <div className="product">
+                                            <img src={e.image} alt={e.name} />
+                                            <div className="name-cost">
+                                                <div className="name-quantity">
+                                                    <h2 className="name">{e.name}</h2>
+                                                    <div className="quantity">x{e.quantity}</div>
+                                                </div>
+                                                <span className="cost">$ {e.price * e.quantity}</span>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            )}
                         </div>
-                        <Link to={`/orders/${_id}`} className="order-button">and {otherItemsCount} other items</Link>
+
+                        { orderItems.length > 1 ? (
+                            otherItemsState ? (
+                                <Link to={`/orders/${_id}`} className="order-button">see order details</Link>
+                            ) : (
+                                <button className="order-button" onClick={() => setOtherItemsState(true)}>
+                                    and {otherItemsCount} other items
+                                </button>
+                            )
+                        ) : (
+                            <Link to={`/orders/${_id}`} className="order-button">see order details</Link>
+                        )}
+
                     </div>
 
                     <div className="total">

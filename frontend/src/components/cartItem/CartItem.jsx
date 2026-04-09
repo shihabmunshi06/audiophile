@@ -49,7 +49,7 @@ export default function CartItem({ _id, slug, image, price, quantity, checkout }
                         handleCartChange={handleCartChange}
                         quantity={quantity}
                     />
-                    <button onClick={handleDelete} type="button" className="svg-bg">
+                    <button clas onClick={handleDelete} type="button" className="remove-button">
                         <CrossIcon />
                     </button>
                 </div>

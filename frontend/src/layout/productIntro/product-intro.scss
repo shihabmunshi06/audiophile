@@ -2,83 +2,93 @@
     @extend %center;
     gap: 8.33vw;
 
-    >* {
-        flex: 1;
-    }
-
     figure {
+        max-width: 54rem;
+        align-self: stretch;
+        border-radius: .8rem;
+
         img {
+            border-radius: inherit;
             background-color: var(--light-gray-1)
         }
     }
 
-    .texts {
-        .new {
-            @include overline();
-            color: var(--warm-brown);
-            margin-bottom: 1.6rem;
-        }
+    .texts-button-wrapper {
+        @include column-gap($gap: 3.2rem);
 
-        h2 {
-            @extend %large;
-            margin-bottom: 2rem;
-        }
+        .texts {
+            @include column-gap($gap: 2rem);
 
-        .desc {
-            opacity: 50%;
+            .new {
+                @include overline();
+                color: var(--warm-brown);
+            }
+
+            h2 {
+                @extend %large;
+            }
+
+            .desc {
+                opacity: 50%;
+            }
         }
 
         .price {
-            margin-top: 4rem;
-            margin-bottom: .8rem;
             opacity: .8;
             @include x-small;
         }
 
-        a {
-            margin-top: 3.2rem;
-        }
-    }
+        .button-wrapper {
+            @include flex($alite: stretch);
+            gap: 2rem;
 
-    .button-wrapper {
-        @include flex();
-        align-items: stretch;
-        gap: 2rem;
-        margin-top: 4rem;
+            .quantity-button {
+                margin: 0;
+            }
 
-        .quantity-button {
-            margin: 0;
-        }
+            a.primary {
+                margin: 0;
+            }
 
-        a.primary {
-            margin: 0;
-        }
-
-        label {
-            display: none;
+            label {
+                display: none;
+            }
         }
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 630px) {
     .product-intro {
         flex-direction: column !important;
 
         figure {
-            width: 100%;
+            max-width: unset;
+
             img {
-                height: 35rem;
+                height: 32rem;
             }
         }
 
-        .texts {
-            text-align: center;
-        }
+        .texts-button-wrapper {
+            align-items: center;
 
-        .button-wrapper {
-            justify-content: center;
+            .texts {
+                align-items: center;
+                text-align: center;
+            }
         }
     }
 }
 
-@media screen and (max-width: 450px) {}
+@media screen and (max-width: 450px) {
+    .product-intro {
+        .texts-button-wrapper {
+            align-items: flex-start;
+
+            .texts {
+                align-items: flex-start;
+                text-align: left;
+            }
+        }
+    }
+}

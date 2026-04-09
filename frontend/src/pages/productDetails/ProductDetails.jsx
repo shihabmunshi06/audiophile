@@ -11,8 +11,6 @@ export default function ProductDetails() {
     const { productId } = useParams()
     const { data, isLoading, isError, error } = useGetProductQuery(productId)
 
-    console.log(data)
-
     if (isLoading) {
         return <p>Loading</p>
     }
@@ -77,12 +75,15 @@ export default function ProductDetails() {
                     {others.map(e => (
                         <li key={e._id}>
                             <article>
-                                <picture>
-                                    <source srcSet={e.image.mobile} media="(max-width: 450px)" />
-                                    <source srcSet={e.image.tablet} media="(max-width: 800px)" />
-                                    <img src={e.image.desktop} alt="" />
-                                </picture>
-                                <h3>{e.name}</h3>
+                                <figure>
+                                    <picture>
+                                        <source srcSet={e.image.mobile} media="(max-width: 450px)" />
+                                        <img src={e.image.desktop} alt="" />
+                                    </picture>
+                                </figure>
+
+                                <h3>{e.name.split(" ").slice(0, -1).join(" ")}</h3>
+
                                 <Link to={`/products/${e._id}`} className="primary">see product</Link>
                             </article>
                         </li>

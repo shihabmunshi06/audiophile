@@ -51,12 +51,12 @@
     }
 
     #categories {
-        margin: 12rem 0;
+        margin: 8.33vw 0;
     }
 
     .zx9-speaker {
         .wrapper {
-            gap: 8rem;
+            gap: 8.33vw;
             padding: 8vw max(2.4rem, 6.4vw) 0;
 
             background-color: var(--warm-brown);
@@ -73,7 +73,11 @@
             }
 
             .texts {
+                @include column-gap($juco: center);
+                align-self: stretch;
+                padding-bottom: 4rem;
                 flex: 1;
+                padding-bottom: 4rem;
 
                 h2 {
                     @extend %x-large;
@@ -198,8 +202,6 @@
         .zx9-speaker {
             .wrapper {
                 flex-direction: column;
-                padding-top: 4rem;
-                padding-bottom: 4rem;
                 background-position: center -16rem;
                 background-size: cover;
 
@@ -209,7 +211,8 @@
                 }
 
                 .texts {
-                    @include column-gap($alite: center);
+                    padding-bottom: 8vw;
+                    align-items: center;
 
                     >* {
                         text-align: center;
