@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router";
-import { useMatch } from "react-router";
+import { Link, useLocation, useMatch } from "react-router";
 
 import QuantityButton from "../../components/quantityButton/quantityButton";
+
 import { addToCart } from "../../app/features/cartSlice";
 
 import "./product-intro.scss"
@@ -78,7 +77,6 @@ export default function ProductIntro(product) {
                     ) : (
                         <Link className="primary" to={`/products/${_id}`}>see product</Link>
                     )}
-
                 </div>
             </div>
         </article>

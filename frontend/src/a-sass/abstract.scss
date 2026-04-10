@@ -13,6 +13,11 @@
   --red: #CD2C2C;
   --stroke: #cfcfcf;
   --gray: hsla(0, 0%, 0%, 0.5);
+
+  --12rem: 8.33vw;
+
+  --8rem: max(2.4rem, 5.2vw);
+  --40to64px: clamp(4rem, 5.5vw, 6.4rem);
 }
 
 %border {
@@ -39,7 +44,6 @@
   align-items: center;
 }
 
-
 @mixin flex($juco: flex-start, $alite: flex-start) {
   display: flex;
   justify-content: $juco;
@@ -52,6 +56,14 @@
   align-items: $alite;
   flex-direction: column;
   gap: $gap;
+}
+
+@mixin ease-in($property: clip-path) {
+  transition: $property .4s ease-in;
+}
+
+@mixin ease-out($property: clip-path) {
+  transition: $property .4s ease-out;
 }
 
 %x-large {
@@ -121,7 +133,6 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 
 button,
 a {

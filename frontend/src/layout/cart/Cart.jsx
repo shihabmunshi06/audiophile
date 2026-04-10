@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CartItem from '../../components/cartItem/CartItem';
 
+import useCartCalculations from '../../hooks/useCartCalculations';
+
 import { clearCart } from '../../app/features/cartSlice';
 
-import useCartCalculations from '../../hooks/useCartCalculations';
 
 import "./cart.scss"
 export default function Cart({ cartState, closeCart, checkout = false, handleCheckout }) {
@@ -88,7 +89,6 @@ export default function Cart({ cartState, closeCart, checkout = false, handleChe
                             </>
                         )}
 
-
                         <button
                             type='submit'
                             className="primary"
@@ -98,7 +98,6 @@ export default function Cart({ cartState, closeCart, checkout = false, handleChe
                         </button>
                     </footer>
                 </form>
-
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router"
+
 import OrderConfirmationIcon from "../../components/icon/OrderConfirmationIcon"
 
 import "./confirmation.scss"

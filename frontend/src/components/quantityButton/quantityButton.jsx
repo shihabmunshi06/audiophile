@@ -1,10 +1,9 @@
 import { useState } from "react"
 
 import "./quantity-button.scss"
-
 export default function QuantityButton({ name, max, min = 1, handleCartChange, quantity }) {
-    const [inputValue, setInputValue] = useState(quantity)
 
+    const [inputValue, setInputValue] = useState(quantity)
     const [error, setError] = useState("")
 
     const decrease = () => {
@@ -62,6 +61,7 @@ export default function QuantityButton({ name, max, min = 1, handleCartChange, q
             >
                 -
             </button>
+
             <input
                 id="quantity"
                 type="number"
@@ -71,6 +71,7 @@ export default function QuantityButton({ name, max, min = 1, handleCartChange, q
                 aria-label={`Quantity of  ${name}`}
                 onChange={handleInputChange}
             />
+
             <button
                 type="button"
                 aria-label={`Increase quantity of  ${name}`}
@@ -79,6 +80,7 @@ export default function QuantityButton({ name, max, min = 1, handleCartChange, q
             >
                 +
             </button>
+            
             {error && (
                 <div className="error-div">
                     <span className="error">{error}</span>

@@ -10,7 +10,7 @@ import "./footer.scss"
 export default function Footer() {
     const year = new Date().getFullYear()
     return (
-        <footer className="main-footer">
+        <footer id="main-footer">
             <div className="logo-nav">
                 <Link className="logo">
                     <Logo />
@@ -57,7 +57,6 @@ export default function Footer() {
                             <InstagramIcon />
                         </a>
                     </li>
-
                 </ul>
             </div>
         </footer>

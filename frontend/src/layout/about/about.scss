@@ -1,8 +1,9 @@
 #about {
-    margin: 8.33vw 0;
+    margin: var(--12rem) 0;
+
     .wrapper {
         @extend %center;
-        gap: 8.33vw;
+        gap: var(--12rem);
 
         >* {
             flex: 1;
@@ -27,6 +28,7 @@
         .img-div {
             align-self: stretch;
             border-radius: inherit;
+            border-radius: .8rem;
         }
     }
 
@@ -38,8 +40,6 @@
             flex-direction: column-reverse;
 
             .texts {
-                padding: 0 max(2.4rem, 6.4vw);
-
                 >* {
                     text-align: center;
                 }

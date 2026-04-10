@@ -9,6 +9,7 @@ export default function useCartCalculations() {
     const vatAmount = (totalAmount * vat) / 100
     const grandTotal = totalAmount + shippingCost + vatAmount
     const cartQuantity = cartItems.length
+    
     return {
         totalAmount,
         shippingCost,

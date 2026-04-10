@@ -8,11 +8,11 @@
         height: 72rem;
         margin: 0 -11vw;
         padding: 0 11vw;
-        background-color: #191919;
         background-image: url("/assets/home/desktop/image-hero.jpg");
         background-repeat: no-repeat;
         background-position-x: right;
         background-position-y: bottom 4rem;
+        background-color: #191919;
 
         @media (max-width: 1200px) {
             margin: 0 -8vw;
@@ -20,8 +20,8 @@
         }
 
         @media (max-width: 800px) {
-            margin: 0 -5.2vw;
-            padding: 0 5.2vw;
+            margin: 0 calc(var(--8rem) * -1);
+            padding: 0 var(--8rem);
         }
 
         .texts-button {
@@ -51,7 +51,7 @@
     }
 
     #categories {
-        margin: 8.33vw 0;
+        margin: var(--12rem) 0;
     }
 
     .zx9-speaker {
@@ -73,10 +73,9 @@
             }
 
             .texts {
+                flex: 1;
                 @include column-gap($juco: center);
                 align-self: stretch;
-                padding-bottom: 4rem;
-                flex: 1;
                 padding-bottom: 4rem;
 
                 h2 {
@@ -173,12 +172,13 @@
 @media screen and (max-width: 1080px) {
     .home {
         #hero {
+            height: 60rem;
             background-image: url("/assets/home/tablet/image-hero.jpg");
+            background-position: bottom;
 
             .texts {
                 max-width: 100%;
                 align-items: center;
-
             }
 
             .texts-button {
@@ -244,10 +244,8 @@
         #hero {
             height: 50rem;
             background-image: url("/assets/home/mobile/image-header-fix.png");
-            background-position-y: bottom;
-            // background-size: contain;
             background-position: center;
-            background-size: 80%;
+            background-size: cover;
         }
 
         .yx1-earphones {
@@ -272,7 +270,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 400px) {
     .home {
         #hero {
             background-size: contain;

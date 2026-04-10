@@ -13,8 +13,8 @@
         }
 
         @media (max-width: 800px) {
-            margin: 0 -5.2vw;
-            padding: 0 5.2vw;
+            margin: 0 calc(var(--8rem) * -1);
+            padding: 0 var(--8rem);
         }
 
         h1 {
@@ -23,9 +23,10 @@
     }
 
     .products {
-        padding-top: max(4rem, 5.5vw);
+        padding-top: var(--40to64px);
+
         .product-intro {
-            margin-bottom: 8.33vw
+            margin-bottom: var(--12rem)
         }
 
         .product-intro:nth-child(even) {

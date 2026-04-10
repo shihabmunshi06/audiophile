@@ -1,6 +1,6 @@
 .product-intro {
     @extend %center;
-    gap: 8.33vw;
+    gap: var(--12rem);
 
     figure {
         max-width: 54rem;
@@ -41,14 +41,6 @@
         .button-wrapper {
             @include flex($alite: stretch);
             gap: 2rem;
-
-            .quantity-button {
-                margin: 0;
-            }
-
-            a.primary {
-                margin: 0;
-            }
 
             label {
                 display: none;

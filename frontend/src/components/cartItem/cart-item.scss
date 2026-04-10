@@ -16,15 +16,15 @@
 
         .name-price {
             .name {
-                text-transform: uppercase;
-                font-weight: 700;
                 margin-bottom: .4rem;
+                font-weight: 700;
+                text-transform: uppercase;
             }
 
             .price {
+                font-size: 1.5rem;
                 font-weight: 700;
                 color: var(--gray);
-                font-size: 1.5rem
             }
         }
     }
@@ -36,7 +36,6 @@
 
         .remove-button {
             background-color: var(--light-gray-1);
-            cursor: pointer;
 
             .cross-icon {
                 height: 100%;
@@ -58,17 +57,5 @@
         font-size: 1.5rem;
         font-weight: 700;
         color: var(--gray);
-    }
-}
-
-@media (max-width: 450px) {
-    .cart-item {
-        .button-wrapper {
-            .quantity-button{
-                // flex-direction: column;
-            }
-            // flex-direction: column;
-            // align-items: flex-end;
-        }
     }
 }

@@ -1,8 +1,8 @@
 #root {
 
-    .main-header,
+    #main-header,
     main,
-    .main-footer,
+    #main-footer,
     .cart-background {
         padding: 0 11vw;
     }
@@ -11,9 +11,9 @@
 @media screen and (max-width: 1200px) {
     #root {
 
-        .main-header,
+        #main-header,
         main,
-        .main-footer,
+        #main-footer,
         .cart-background {
             padding: 0 8vw;
         }
@@ -23,11 +23,11 @@
 @media screen and (max-width: 800px) {
     #root {
 
-        .main-header,
+        #main-header,
         main,
-        .main-footer,
+        #main-footer,
         .cart-background {
-            padding: 0 max(2.4rem, 5.2vw);
+            padding: 0 var(--8rem);
         }
     }
 }

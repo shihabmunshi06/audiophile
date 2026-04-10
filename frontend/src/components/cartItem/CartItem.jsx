@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux"
 
-import QuantityButton from "../quantityButton/quantityButton"
-
 import CrossIcon from "../icon/CrossIcon"
+
+import QuantityButton from "../quantityButton/quantityButton"
 
 import { changeQuantity, deleteCartItem } from "../../app/features/cartSlice"
 

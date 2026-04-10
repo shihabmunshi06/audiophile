@@ -1,7 +1,6 @@
 .quantity-button {
     @extend %center;
     background-color: var(--light-background);
-    margin-left: auto;
 
     label {
         display: none;
@@ -10,9 +9,9 @@
     button {
         @extend %center;
         padding: .6rem 1.2rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: var(--gray);
-        font-size: 1.8rem;
 
         &:disabled {
             opacity: .3;
@@ -28,11 +27,11 @@
     }
 
     input {
+        width: 3ch;
         margin: 0 .4rem;
         text-align: center;
-        appearance: textfield;
-        width: 3ch;
         font-weight: 700;
+        appearance: textfield;
     }
 
     .error-div {

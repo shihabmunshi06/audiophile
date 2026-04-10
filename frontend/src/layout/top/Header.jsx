@@ -42,7 +42,7 @@ export default function Header() {
 
     return (
         <>
-            <header className='main-header'>
+            <header id='main-header'>
                 <button className='hamburger' onClick={handleHamClick}>
                     <Hamburger />
                 </button>

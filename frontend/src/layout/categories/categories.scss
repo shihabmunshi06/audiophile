@@ -1,8 +1,8 @@
 nav#categories {
     ul {
+        width: 100%;
         @extend %center;
         gap: 3.2rem;
-        width: 100%;
 
         li {
             flex: 1;

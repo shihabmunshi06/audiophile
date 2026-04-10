@@ -1,14 +1,15 @@
+import { useDispatch, useSelector } from "react-redux"
 import { useForm, Controller } from "react-hook-form"
 
 import CashOnDeliveryIcon from "../../components/icon/CashOnDeliveryIcon"
+
 import Cart from "../../layout/cart/Cart"
 import Confirmation from "../../layout/confirmation/Confirmation"
 
-import { useDispatch, useSelector } from "react-redux"
 import useCartCalculations from "../../hooks/useCartCalculations"
-import { useAddOrderMutation } from "../../app/features/ordersApiSlice"
 
 import { clearCart } from "../../app/features/cartSlice"
+import { useAddOrderMutation } from "../../app/features/ordersApiSlice"
 
 import "./checkout.scss"
 export default function Checkout() {
@@ -87,6 +88,7 @@ export default function Checkout() {
             <div className="wrapper">
                 <div className="form-wrapper">
                     <h1>Checkout  <span onClick={() => reset(testData)}>autofill</span></h1>
+
                     {errors.root?.serverError && (
                         <div className="form-error-div">
                             <span id="form-error" role="alert" className="error">
@@ -94,6 +96,7 @@ export default function Checkout() {
                             </span>
                         </div>
                     )}
+
                     <form id="checkout" onSubmit={handleSubmit(handleData)}>
                         <fieldset>
                             <legend>Billing Details</legend>
@@ -259,7 +262,9 @@ export default function Checkout() {
                             </div>
                         </fieldset>
 
-                        <fieldset className={`payment-details ${paymentMethod === "e-money" && "e-money"}`}>
+                        <fieldset
+                            className={`payment-details ${paymentMethod === "e-money" && "e-money"}`}
+                        >
                             <legend>payment details</legend>
                             <div className="inputs-wrapper">
                                 <Controller
@@ -366,6 +371,7 @@ export default function Checkout() {
                     handleCheckout={handleData}
                 />
             </div>
+
             <Confirmation
                 successfulOrder={successfulOrder}
                 confirmationState={isSuccess}
