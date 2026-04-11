@@ -63,7 +63,7 @@ export default function Header() {
                         <CartIcon />
                     </button>
                     <button
-                    onClick={handleProfileClick}>
+                        onClick={handleProfileClick}>
                         <ProfileIcon />
                     </button>
                 </div>

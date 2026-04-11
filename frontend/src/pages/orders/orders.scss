@@ -1,16 +1,55 @@
 .orders-page {
     .wrapper {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-        margin: 0;
+        .title-wrapper {
+            height: clamp(10rem, 16vw, 22rem);
+            @extend %center;
+            margin: 0 -11vw;
+            padding: 0 11vw;
+            background-color: var(--black);
+            color: var(--white);
 
-        h1{
-            margin-bottom: 2.6rem;
+            @media (max-width: 1200px) {
+                margin: 0 -8vw;
+                padding: 0 8vw;
+            }
+
+            @media (max-width: 800px) {
+                margin: 0 calc(var(--8rem) * -1);
+                padding: 0 var(--8rem);
+            }
+
+            h1 {
+                @extend %large;
+            }
         }
 
-        .orders {
-            .order-item{
-                @extend %space-between;
+
+        .orders-table {
+            padding: var(--40to64px) 0;
+
+            .table-head {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 1.6rem;
+                margin-bottom: 3.2rem;
+            }
+
+            .orders {
+                .order-item {
+                    display: grid;
+                    grid-template-columns: 25% 16rem 12rem 10rem 10rem auto;
+                    gap: 1.6rem;
+
+                    &:not(:last-child) {
+                        border-bottom: 1px solid var(--gray);
+                        margin-bottom: 1.6rem;
+                        padding-bottom: 1.6rem;
+                    }
+
+                    a{
+                        background-color: var(--gray);
+                    }
+                }
             }
         }
     }

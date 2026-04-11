@@ -13,6 +13,7 @@ export default function Cart({ cartState, closeCart, checkout = false, handleChe
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+
     const { totalAmount, shippingCost, vat, vatAmount, grandTotal, cartQuantity } = useCartCalculations()
 
     const cartItems = useSelector(state => state.cart.cartItems)

@@ -2,14 +2,34 @@
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     position: fixed;
     right: 11vw;
-    margin-top: 2rem;
+
+    @media screen and (max-width: 1200px) {
+        right: 8vw;
+    }
+
+    @media screen and (max-width: 800px) {
+        right: var(--8rem);
+    }
+
+    margin-top: 3.2rem;
     background-color: var(--white);
     z-index: 10000;
-    border-radius: .8rem;
-    padding:  1.6rem;
-    transition: clip-path 0.3s ease-out;
+    border-radius: .6rem;
+    padding: 1.6rem;
+    @include ease-in();
+    @include column-gap($gap: 1.2rem);
 
-    &.true {
+    &.active {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    a,
+    button {
+        color: var(--gray);
+        font-size: 1.4rem;
+
+        &:hover {
+            color: var(--warm-brown);
+        }
     }
 }

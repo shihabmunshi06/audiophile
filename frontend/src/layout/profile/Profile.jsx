@@ -3,11 +3,10 @@ import { Link } from "react-router"
 import "./profile.scss"
 export default function Profile({ profileState, closeProfile }) {
     return (
-        <div className={`profile ${profileState}`}>
+        <div className={`profile ${profileState === true ? "active" : ""}`}>
             <button>Sign in</button>
-            <button>Sign Up</button>
             <Link to={`orders`}>Orders</Link>
-            <button>Profile</button>
+            <Link to={`profile`}>Profile</Link>
             <button>Sign out</button>
         </div>
     )

@@ -10,6 +10,7 @@ import ProductDetails from './pages/productDetails/ProductDetails'
 import Checkout from './pages/checkout/Checkout'
 import Orders from './pages/orders/Orders'
 import Order from './pages/order/Order'
+import ProfilePage from './pages/profilePage/ProfilePage'
 
 export default function App() {
   return (
@@ -21,6 +22,10 @@ export default function App() {
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/orders/:orderId' element={<Order />} />
+        <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/signin' element={<ProfilePage />} />
+        <Route path='/signup' element={<ProfilePage />} />
+        <Route path='/reset' element={<ProfilePage />} />
       </Route>
       <Route element={<Protected />}>
         <Route path='*' element={<NotFound />} />

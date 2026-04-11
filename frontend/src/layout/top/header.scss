@@ -34,13 +34,18 @@
     }
 
     >#categories {
-        height: 100vh;
         width: 100vw;
+        height: calc(100vh - 8rem);
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
         @include ease-in();
         background-color: rgba($color: #000000, $alpha: .4);
         color: var(--black);
         display: none;
+        position: fixed;
+        top: 8rem;
+        left: 0;
+        right: 0;
+        overflow-y: auto;
 
         &.active {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -49,12 +54,34 @@
         .wrapper {
             padding: 3.2rem;
             background-color: var(--white);
+
+            ul {
+                gap: 2rem;
+
+                li {
+                    height: 20rem;
+                    max-height: 20rem;
+                    padding-bottom: 2.4rem;
+
+                    .img-div {
+                        height: 10rem;
+                    }
+
+                    h2 {
+                        margin-top: auto;
+                    }
+
+                    a {
+                        margin-top: .8rem;
+                    }
+                }
+            }
         }
     }
 
     .buttons {
         @include flex();
-        gap: 1.6rem;
+        gap: 2.4rem;
 
         svg {
             path {
@@ -80,7 +107,7 @@
         }
 
         .logo {
-            margin-left: 4rem;
+            margin-left: 2.4rem;
         }
 
         >nav {
@@ -89,46 +116,10 @@
 
         >#categories {
             display: block;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-
-            .wrapper {
-                ul {
-                    gap: 2rem;
-
-                    li {
-                        height: 20rem;
-                        max-height: 20rem;
-                        padding-bottom: 2.4rem;
-
-                        .img-div {
-                            height: 10rem;
-                        }
-
-                        h2 {
-                            margin-top: auto;
-                        }
-
-                        a {
-                            margin-top: .8rem;
-                        }
-                    }
-                }
-            }
         }
 
         .buttons {
             margin-left: auto;
-        }
-    }
-}
-
-@media (max-width: 800px) {
-    #main-header {
-        .logo {
-            margin-left: 2.4rem;
         }
     }
 }

@@ -3,7 +3,7 @@ import Order from "./order.model.js"
 import asyncHandler from "../../utils/asyncHandler.js"
 
 const getOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find({})
+    const orders = await Order.find().sort({ createdAt: -1 })
     res.json(orders)
 })
 
