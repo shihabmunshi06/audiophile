@@ -21,7 +21,12 @@ nav#categories {
             }
 
             .img-div {
+                background-color: red;
                 height: 16rem;
+                width: 100%;
+                img{
+                    object-fit: contain;
+                }
             }
 
             h2 {
