@@ -101,6 +101,9 @@
     .orders-page {
         .wrapper {
             .orders-table {
+                .table-head{
+                    display: none;
+                }
                 .orders {
                     .order-item {
                         grid-template-columns: minmax(9.2rem, 1.8fr) 9ch minmax(7ch, 1fr) minmax(7ch, 1fr) min-content;
