@@ -1,176 +1,206 @@
 import { useParams } from "react-router"
 import { useGetOrderQuery } from "../../app/features/ordersApiSlice"
 
+import useTimestamp from "../../hooks/useTimestamp"
+
 const Product = ({ image, name, quantity, price }) => {
-    return (
-        <div className="ordered-product">
-            <img src={image} alt={name} />
-            <span className="name">{name}</span>
-            <span className="quantity">{quantity}</span>
-            <span className="price">{price}</span>
-            <span className="total">{quantity * price}</span>
-        </div>
-    )
+  return (
+    <div className="ordered-product">
+      <img src={image} alt={name} />
+      <p className="name">{name}</p>
+      <p className="quantity">x{quantity} pieces</p>
+      <p className="price">${price}</p>
+      <p className="total">${quantity * price}</p>
+    </div>
+  )
 }
 
 const Calculation = ({ itemsPrice, vat, shippingCost, totalPrice }) => {
-    return (
-        <section className="calculation">
-            <h2>Calculation</h2>
-            <div className="title-total items">
-                <div className="title">Items Total</div>
-                <div className="total">${itemsPrice}</div>
-            </div>
-            <div className="title-total vat">
-                <div className="title">Vat</div>
-                <div className="total">${vat}</div>
-            </div>
-            <div className="title-total shipping-cost">
-                <div className="title">Shipping</div>
-                <div className="total">${shippingCost}</div>
-            </div>
-            <div className="title-total grand-total">
-                <div className="title">Total Billl</div>
-                <div className="total">${totalPrice}</div>
-            </div>
-        </section>
-    )
+  return (
+    <section className="calculation">
+      <h2>Calculation</h2>
+      <div className="title-total items">
+        <div className="title">Items Total</div>
+        <div className="total">${itemsPrice}</div>
+      </div>
+      <div className="title-total vat">
+        <div className="title">Vat</div>
+        <div className="total">${vat}</div>
+      </div>
+      <div className="title-total shipping-cost">
+        <div className="title">Shipping</div>
+        <div className="total">${shippingCost}</div>
+      </div>
+      <div className="title-total grand-total">
+        <div className="title">Total Billl</div>
+        <div className="total">${totalPrice}</div>
+      </div>
+    </section>
+  )
 }
 
 const Billing = ({ paymentMethod }) => {
-    return (
-        <section className="billing">
-            <h2>Billing Details</h2>
+  return (
+    <section className="billing">
+      <h2>Billing Details</h2>
 
-            <div className="content">
-                <dl className="name">
-                    <dt>Name:</dt>
-                    <dd>Shihab</dd>
-                </dl>
-                <dl className="address">
-                    <dt>Address:</dt>
-                    <dd>1530 al aqsa jame masjid road</dd>
-                </dl>
-                <dl className="phone">
-                    <dt>Phone:</dt>
-                    <dd>017936141345</dd>
-                </dl>
-                <dl className="trxid">
-                    <dt>Trx ID:</dt>
-                    <dd>T250917</dd>
-                </dl>
-                <dl className="method">
-                    <dt>Method:</dt>
-                    <dd>{paymentMethod?.split("-").join(" ")}</dd>
-                </dl>
-                <dl className="date">
-                    <dt>Billing Date:</dt>
-                    <dd>12th April, 2026</dd>
-                </dl>
-            </div>
-        </section>
-    )
+      <div className="content">
+        <dl className="name">
+          <dt>Name:</dt>
+          <dd>Shihab</dd>
+        </dl>
+        <dl className="address">
+          <dt>Address:</dt>
+          <dd>1530 al aqsa jame masjid road</dd>
+        </dl>
+        <dl className="phone">
+          <dt>Phone:</dt>
+          <dd>017936141345</dd>
+        </dl>
+        <dl className="trxid">
+          <dt>Trx ID:</dt>
+          <dd>T250917</dd>
+        </dl>
+        <dl className="method">
+          <dt>Method:</dt>
+          <dd>{paymentMethod?.split("-").join(" ")}</dd>
+        </dl>
+        <dl className="date">
+          <dt>Billing Date:</dt>
+          <dd>12th April, 2026</dd>
+        </dl>
+      </div>
+    </section>
+  )
 }
 
 const Shipping = () => {
-    return (
-        <section className="shipping">
-            <h2>Shipping</h2>
-            <div className="content">
-                <dl className="name">
-                    <dt>Name:</dt>
-                    <dd>Shihab Munshi</dd>
-                </dl>
-                <dl className="address">
-                    <dt>Address:</dt>
-                    <dd>1120, bagan bari road, Jurain</dd>
-                </dl>
-                <dl className="phone">
-                    <dt>Phone:</dt>
-                    <dd>01832508886</dd>
-                </dl>
-                <dl className="shipmentid">
-                    <dt>Shipment ID:</dt>
-                    <dd>93387dfhk</dd>
-                </dl>
-                <dl className="method">
-                    <dt>Method:</dt>
-                    <dd>Ali Express</dd>
-                </dl>
-                <dl className="date">
-                    <dt>Shipment Date:</dt>
-                    <dd>14th April, 2026</dd>
-                </dl>
-            </div>
-        </section>
-    )
+  return (
+    <section className="shipping">
+      <h2>Shipping details</h2>
+      <div className="content">
+        <dl className="name">
+          <dt>Name:</dt>
+          <dd>Shihab Munshi</dd>
+        </dl>
+        <dl className="address">
+          <dt>Address:</dt>
+          <dd>1120, bagan bari road, Jurain</dd>
+        </dl>
+        <dl className="phone">
+          <dt>Phone:</dt>
+          <dd>01832508886</dd>
+        </dl>
+        <dl className="shipmentid">
+          <dt>Shipment ID:</dt>
+          <dd>93387dfhk</dd>
+        </dl>
+        <dl className="method">
+          <dt>Method:</dt>
+          <dd>Ali Express</dd>
+        </dl>
+        <dl className="date">
+          <dt>Shipment Date:</dt>
+          <dd>14th April, 2026</dd>
+        </dl>
+      </div>
+    </section>
+  )
 }
 
 import "./order.scss"
 export default function Order() {
-    const { orderId } = useParams()
+  const { orderId } = useParams()
 
-    const { data: order = {}, isLoading, isError } = useGetOrderQuery(orderId)
-    const {
-        _id, createdAt, orderStatus, isPaid,
-        orderItems,
-        itemsPrice, vat, shippingCost, totalPrice,
-        paymentMethod
-    } = order
+  const { data: order = {}, isLoading, isError } = useGetOrderQuery(orderId)
+  const {
+    _id, createdAt, orderStatus, isPaid,
+    orderItems,
+    itemsPrice, vat, shippingCost, totalPrice,
+    paymentMethod
+  } = order
 
-    const renderProducts = () => {
-        if (isLoading) return <p>loading</p>
-        if (isError) return <p>error</p>
-        if (orderItems.legth === 0) return <p>no order found</p>
-        return orderItems.map(e => <Product key={e._id} {...e} />)
-    }
+  const renderProducts = () => {
+    if (isLoading) return <p>loading</p>
+    if (isError) return <p>error</p>
+    if (orderItems.legth === 0) return <p>no order found</p>
+    return orderItems.map(e => <Product key={e._id} {...e} />)
+  }
 
-    return (
-        <div className="order-page">
-            <div className="wrapper">
-                <div className="text-wrapper">
-                    <h1>Order {_id}</h1>
-                    <p>This order  was placed on
-                        <span>{createdAt}</span>
-                        and is currently
-                        <span>{orderStatus === "pending" ? "Shippping" : "Delivered"}</span>
-                        and payment is
-                        <span>  {isPaid ? "Paid" : "Pending"}</span>
-                    </p>
-                </div>
+  const { date, time } = useTimestamp(createdAt)
 
-                <div className="sections-wrapper">
-                    <section className="ordered-products">
-                        <h2>Products</h2>
+  const handleInvoice = () => {
+    console.log("invoice")
+  }
+  const handleTrack = () => {
+    console.log("track")
+  }
 
-                        <div className="table-top">
-                            <span className="image-title">Image</span>
-                            <span className="name-title">Name</span>
-                            <span className="quantity-title">Quantity</span>
-                            <span className="price-title">Price</span>
-                            <span className="total-title">Total</span>
-                        </div>
-                        <div className="table">
-                            {renderProducts()}
-                        </div>
-                    </section>
+  return (
+    <div className="order-page">
+      <div className="wrapper">
+        <header>
+          <h1>Order {_id}</h1>
 
-                    <Calculation
-                        itemsPrice={itemsPrice}
-                        vat={vat}
-                        shippingCost={shippingCost}
-                        totalPrice={totalPrice}
-                    />
+          <p>
+            This order  was placed on <span>{date}</span> <span>{time}</span>
+          </p>
 
-                    <Billing
-                        paymentMethod={paymentMethod}
-                    />
+          <p>
+            The order is currently <span>{orderStatus === "pending" ? "Shippping" : "Delivered"}</span>
+          </p>
 
-                    <Shipping />
-                </div>
+          <p>
+            The payment is <span>{isPaid ? "Paid" : "Pending"}</span>
+          </p>
+
+          <div className="buttons">
+            <button
+              className="primary"
+              onClick={handleInvoice}>
+              <span>Invoice</span>
+            </button>
+
+            <button
+              className="outline"
+              onClick={handleTrack}>
+              <span>Track Order</span>
+            </button>
+          </div>
+        </header>
+
+        <div className="sections-wrapper">
+          <section className="ordered-products-table">
+            <h2>Products</h2>
+
+            <div className="table-top">
+              <p className="image-title">Image</p>
+              <p className="name-title">Name</p>
+              <p className="quantity-title">Quantity</p>
+              <p className="price-title">Price</p>
+              <p className="total-title">Total</p>
             </div>
+            <div className="table">
+              {renderProducts()}
+            </div>
+          </section>
+
+          <Calculation
+            itemsPrice={itemsPrice}
+            vat={vat}
+            shippingCost={shippingCost}
+            totalPrice={totalPrice}
+          />
+
+          <Billing
+            paymentMethod={paymentMethod}
+          />
+
+          <Shipping />
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 {/* <main id="order-detail" data-order-id="TL2509170019">

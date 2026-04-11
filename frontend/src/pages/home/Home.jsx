@@ -19,7 +19,7 @@ export default function Home() {
             <p className="desc">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
             </p>
           </div>
-          <Link className="primary" to="/product/4">see product</Link>
+          <Link className="primary" to="/products/69d59adbb7b337aa3dd299c4">see product</Link>
         </div>
       </section>
       <Categories />
@@ -35,7 +35,7 @@ export default function Home() {
           <div className="texts">
             <h2>ZX9 <br /> SPEAKER</h2>
             <p>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
-            <Link className='black' to="/product/6"> see product</Link>
+            <Link className='black' to="/products/69d59adbb7b337aa3dd299d0"> see product</Link>
           </div>
         </div>
 
@@ -44,7 +44,7 @@ export default function Home() {
         <div className="wrapper">
           <div className="texts">
             <h2>ZX7 SPEAKER</h2>
-            <Link className="outline" to="/product/5">see product</Link>
+            <Link className="outline" to="/products/69d59adbb7b337aa3dd299ca">see product</Link>
           </div>
         </div>
       </article>
@@ -59,7 +59,7 @@ export default function Home() {
           </div>
           <div className="texts">
             <h2>YX1 EARPHONES</h2>
-            <Link className='outline' to="/product/1">see product</Link>
+            <Link className='outline' to="/products/69d59adbb7b337aa3dd299b4">see product</Link>
           </div>
         </div>
       </article>

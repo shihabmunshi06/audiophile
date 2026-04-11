@@ -29,25 +29,187 @@
 
             .table-head {
                 display: grid;
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: minmax(22rem, 2fr) 1fr 1fr 1fr 1fr auto;
                 gap: 1.6rem;
-                margin-bottom: 3.2rem;
+                border-bottom: 1px solid var(--stroke);
+                margin-bottom: 2.4rem;
+                padding-bottom: 1.6rem;
             }
 
             .orders {
                 .order-item {
                     display: grid;
-                    grid-template-columns: 25% 16rem 12rem 10rem 10rem auto;
+                    grid-template-columns: minmax(22rem, 2fr) 1fr 1fr 1fr 1fr auto;
                     gap: 1.6rem;
+                    align-items: center;
 
                     &:not(:last-child) {
-                        border-bottom: 1px solid var(--gray);
+                        border-bottom: 1px solid var(--stroke);
                         margin-bottom: 1.6rem;
                         padding-bottom: 1.6rem;
                     }
 
-                    a{
-                        background-color: var(--gray);
+                    .inner-title {
+                        display: none;
+                    }
+
+                    .order-id {
+                        @include ellipsis();
+                    }
+
+                    a {
+                        padding: 0 .2rem;
+                        background-color: var(--light-gray-1);
+
+                        &:hover {
+                            background-color: var(--warm-brown);
+
+                            svg {
+                                rect {
+                                    fill: var(--warm-brown);
+                                }
+
+                                circle,
+                                path {
+                                    stroke: var(--white);
+                                }
+                            }
+                        }
+
+                        svg {
+                            height: 2.8rem;
+                            width: 2.8rem;
+                            stroke-width: 1.6;
+
+                            rect {
+                                fill: var(--light-gray-1);
+                            }
+
+                            circle,
+                            path {
+                                stroke: var(--gray);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .orders-page {
+        .wrapper {
+            .orders-table {
+                .orders {
+                    .order-item {
+                        grid-template-columns: minmax(9.2rem, 1.8fr) 9ch minmax(7ch, 1fr) minmax(7ch, 1fr) min-content;
+                        row-gap: 0;
+
+                        .order-id {
+                            grid-column: span 2;
+                        }
+
+                        .status {
+                            grid-column-start: 4;
+                            grid-row: span 2;
+                        }
+
+                        .date {
+                            grid-column-start: 1;
+                            grid-row-start: 2;
+                            justify-self: end;
+                        }
+
+                        .time {
+                            grid-column-start: 2;
+                            grid-row-start: 2;
+                            // margin-right: 1.2rem;
+                        }
+
+                        .bill {
+                            grid-column-start: 3;
+                            grid-row: 1/span 2;
+                        }
+
+                        a {
+                            grid-column-start: 5;
+                            grid-row: 1/span 2;
+                            padding: 0 .4rem;
+                            background-color: var(--warm-brown);
+
+                            svg {
+                                stroke-width: 1.6;
+
+                                rect {
+                                    fill: var(--warm-brown);
+                                }
+
+                                circle,
+                                path {
+                                    stroke: var(--white);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .orders-page {
+        background-color: var(--light-gray-1);
+        margin: 0 calc(var(--8rem) * -1);
+        padding: 0 var(--8rem);
+
+        .wrapper {
+            .orders-table {
+                .table-head {
+                    display: none;
+                }
+
+                .orders {
+                    .order-item {
+                        background-color: var(--white);
+                        padding: 1.6rem 2rem;
+                        border-radius: .8rem;
+                        border-bottom: none !important;
+                        grid-template-columns: 1fr auto;
+                        column-gap: 1.6rem;
+                        row-gap: 0;
+
+                        .inner-title {
+                            display: inline-block;
+                            margin-right: 1.2ch;
+
+                            &:after {
+                                content: ":";
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(calc(-50% - 1px));
+                                margin-left: 1px;
+                                font-size: 1.8rem;
+                                font-weight: 700;
+                            }
+                        }
+
+                        >* {
+                            grid-column: 1/ span 2 !important;
+                            grid-row: auto !important;
+                            justify-self: start !important;
+                        }
+
+                        .order-id {
+                            grid-column: 1/ span 1 !important;
+                            max-width: 100%;
+                        }
+
+                        a {
+                            grid-column: 2/span 1 !important;
+                            grid-row-start: 1 !important;
+                        }
                     }
                 }
             }

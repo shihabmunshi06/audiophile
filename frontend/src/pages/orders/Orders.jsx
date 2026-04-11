@@ -1,5 +1,7 @@
 import { Link } from "react-router"
 
+import EyeIcon from "../../components/icon/EyeIcon"
+
 import { useGetOrdersQuery } from "../../app/features/ordersApiSlice"
 
 const OrderItem = ({ order }) => {
@@ -7,13 +9,29 @@ const OrderItem = ({ order }) => {
     const { date, time } = useTimestamp(createdAt)
     return (
         <div className="order-item">
-            <span className="order-id">{_id}</span>
-            <span className="date">{date}</span>
-            <span className="time">{time}</span>
-            <span className="status">{orderStatus}</span>
-            <span className="total">${Math.round(totalPrice)}</span>
+            <p className="order-id">
+                <span className="inner-title order-id-title">Order ID</span>
+                {_id}
+            </p>
+            <p className="date">
+                <span className="inner-title date-title">Date</span>
+                {date}
+            </p>
+            <p className="time">
+                <span className="inner-title time-title">Time</span>
+                {time}
+            </p>
+            <p className="status">
+                <span className="inner-title status-title">Status</span>
+                {orderStatus}
+            </p>
+            <p className="bill">
+                <span className="inner-title bill-title">Bill</span>
+                ${Math.round(totalPrice)}
+            </p>
             <Link to={`/orders/${_id}`} className="view-button">
-                view
+                {/* <span className="inner-title view-title">View</span> */}
+                <EyeIcon />
             </Link>
         </div>
     )
@@ -40,11 +58,12 @@ export default function Orders() {
                 </div>
                 <div className="orders-table">
                     <div className="table-head">
-                        <span>Order Id</span>
-                        <span>Date</span>
-                        <span>Time</span>
-                        <span>Status</span>
-                        <span>Bill</span>
+                        <p className="order-title">Order ID</p>
+                        <p className="date-title">Date</p>
+                        <p className="time-title">Time</p>
+                        <p className="status-title">Status</p>
+                        <p className="bill-title">Bill</p>
+                        <p className="view-title">View</p>
                     </div>
                     <div className="orders">
                         {renderOrder()}

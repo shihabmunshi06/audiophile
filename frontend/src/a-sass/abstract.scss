@@ -128,7 +128,7 @@ p {
   line-height: 1.6;
 }
 
-%ellipsis {
+@mixin ellipsis() {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
